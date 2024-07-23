@@ -9,6 +9,7 @@ sanity = 9
 # money starts at $20
 money = 20
 # 1 to 24, military time
+# JAUNT
 time = 6
 healthloss =int
 action = ''
