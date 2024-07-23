@@ -22,7 +22,9 @@ def Dice(): #random dice
     import time
     time.sleep(1)
     print(f'you rolled a {diceroll}')
-    time.sleep(2)
+    pause()
+    return diceroll
+
 
 def pause(): #pause() for 2 sec
     import time
@@ -43,11 +45,11 @@ print('there is a wawa, a ymca, a park, a walmart, as well as an dense forest ca
 pause()
 print('You will roll a dice after each decision you make.')
 pause()
-print('you start with 80 health you have 9 sanity with a max of 10 and 20 dollars.')
+print('you start with 80 health you have 9 sanity with a max of 10 as well as starting with 20 dollars.')
 pause()
 
 sleepIn=input('You wake up at 6 o clock(military time), would you like to sleep in(yes or no)>>  ')
-Dice()
+diceroll=Dice()
 
 
 if (sleepIn == "yes"):
@@ -73,24 +75,25 @@ cindyfriend= "no"
 pause()
 
 if (time == 6):
-    print('you watch the news. today will be a real burner, 92 degrees and it wont be any cooler in the near future. In other news an Irish man was taken away and sent to the caverns after being discovered with a phone. diceroll young kid named Billy Stewart has gone missing. There have been reported noises coming from Wailing Woods')
+    print('you watch the news. today will be a real burner, 92 degrees and it wont be any cooler in the near future. In other news an Irish man was taken away and sent to the caverns after being discovered with a phone. a young kid named Billy Stewart has gone missing. There have been reported noises coming from Wailing Woods')
     time = 8
     pause()
     action = input('do you want to water the neighbors plants for 5 dollars?')
 
 if(action=='yes'):    #going to water plants
     print('your neighbor a few houses down gave you and your family cookies when you moved in.')
+    pause()
     print('it is a 70 year old grandma in a rundown blue house, her name is cindy')
     gingerEncounterCindyHouse =""
     pause()
-    Dice()
+    diceroll=Dice()
     
     if(diceroll<10):
         print('you are watering the plant and cindy goes inside after being on her porch.')
         pause()
         print('you notice a young man maybe 18 years old walking on the sidewalk staring at you. his face looks hollow and he looks starved. he has flecks of dried blood around his mouth. he is 5 foot nine and has orange hair and a tattered hoodie and jeans')
         pause()
-        gingerEncounterCindyHouse = input('would you like to (go) inside, run (home), approach>>> ')
+        gingerEncounterCindyHouse = input('would you like to (go) inside, run (home), approach>> ')
         pause()
         Dice()
 
@@ -101,12 +104,12 @@ if(action=='yes'):    #going to water plants
                 gingerEncounterCindyHouse= input('run or fight')
                 pause()
                 if(gingerEncounterCindyHouse=='run'):
-                    Dice()
+                    diceroll=Dice()
                     
 
                     if(diceroll<8):
                         print('the man runs you down and tackles you to the floor')
-                        Dice()
+                        diceroll=Dice()
                 
                         healthloss = int(diceroll*3)
                         print(f'you lost {healthloss} health')
@@ -116,15 +119,13 @@ if(action=='yes'):    #going to water plants
                             SystemExit('you died!')
                         gingerEncounterCindyHouse= input('run or fight')
                         if(gingerEncounterCindyHouse=='run'):
+                            diceroll=Dice()
                             if(diceroll<15):
                                 print('he tracks you down again')
-                                Dice()
-                        
+                                diceroll=Dice()
                                 healthloss = int(diceroll*3)
                                 print(f'you lost {healthloss} health')
                                 Stats(health,money,time,sanity)
-                                if(health<=0):
-                                    SystemExit('you died!')
                             else: #got away
                                 print('he trips and runs away, you got home and made yourself some food')
                                 health =+ 5
@@ -134,16 +135,16 @@ if(action=='yes'):    #going to water plants
                         health =+ 5
                         time =15
                 else:     # fight
-                    Dice()
+                    diceroll=Dice()
             
                     if(diceroll<5):
                         print('he lands a mean right hook')
-                        Dice()
+                        diceroll=Dice()
                 
                         healthloss = diceroll * 4
                     elif(diceroll<10):
                         print('he hits you in the shoulder')
-                        Dice()
+                        diceroll=Dice()
                 
                         healthloss = diceroll *2
                 
@@ -154,7 +155,7 @@ if(action=='yes'):    #going to water plants
                         print('you search the body and find an id card ')
             else:
                 print('you run and open the door, closing it behind you')
-                Dice()
+                diceroll=Dice()
         
                 if(diceroll<7):
                     print('you turn around and see cindy shedding her skin into a 25ish year old red-headed man with bloodshot eyes.')
@@ -176,14 +177,14 @@ if(action=='yes'):    #going to water plants
         pause()
         money+= 5
         Stats(health,money,time,sanity)
-        Dice()
+        diceroll=Dice()
 
         if(diceroll <11):
             print('you walk home and chill out for a while')
             time=12
         else:
             print('you see a fast shuffling in the house then the old woman walks out, odd considering she said no one lived with her.')
-            Dice()
+            diceroll=Dice()
             if(diceroll<10):
                 print('cindy gives you 2 extra dollars for your hard work')
                 money=+2
