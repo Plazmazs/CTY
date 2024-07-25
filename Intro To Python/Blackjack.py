@@ -17,7 +17,7 @@ randomcard=''
 action=''
 insurance=''
 spilt=''
-
+continueplaying='yes'
 card1='' 
 card2=''
 card3=''
@@ -48,7 +48,6 @@ card27=''
 card28=''
 card29=''
 card30=''
-
 card1score=0
 card2score=0
 card3score=0
@@ -79,10 +78,11 @@ card27score=0
 card28score=0
 card29score=0
 card30score=0
+winlosstie=''
 
 def pause(): #pause() for 2 sec
     import time
-    time.sleep(1)
+    time.sleep(2)
 
 def Card():
     cardlist = ['Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King']
@@ -118,66 +118,176 @@ def ScoreAssign():
         CardScore=11
     return CardScore
 
-listofcards= [card1,card2,card3,card4,card5,card6,card7,card8,card9,card10,card11,card12,card13,card14,card15,card16,card17,card18,card19,card20,card21,card22,card23,card24,card25,card26,card27,card28,card29,card30]
-listofcardvalues=[card1score,card2score,card3score,card4score,card5score,card6score,card7score,card8score,card9score,card10score,card11score,card12score,card13score,card14score,card15score,card16score,card17score,card18score,card19score,card20score,card21score,card22score,card23score,card24score,card25score,card26score,card27score,card28score,card29score,card30score]
+def winlosscheck(v1,v2):
+    if(v1)>21:
+        winlosstie='loss'
+        MoveOn='yes'
+        print('you busted!')
 
-for i in range(0,29):
-    randomcard=Card()
-    listofcards[i]=randomcard
-    print(listofcards[i])
-    CardScore=ScoreAssign()
-    listofcardvalues[i]=CardScore
-    print(listofcardvalues[i])
+    elif(v1==21):
+        if v1==v2:
+            winlosstie='tie'
+            MoveOn='yes'
+            print('push')
+            
+        if v1>v2:
+            winlosstie='win'
+            MoveOn='yes'
+            print('you won!')
+    elif(v1<21):
+        winlosstie=''
+        MoveOn='no'
 
-print('Hello, welcome to Blackjack.')
-while MoveOn == 'no':
-    wager = input('How much would you like to wager?')
-    try:
-        wager=int(wager)
-        MoveOn = 'yes'
-        money -= wager
-    except:
-        print("invalid")
+    return(winlosstie,MoveOn)
+    
 
-#actual game
-#dealer
-DealerScore += card1score
-print(f'The dealer has a(n) {card1}, face up') 
-pause()
-print(f'the dealer score is currently {DealerScore} without their other card')
-    #player1
-player1Score += card3score
-print(f'You have been dealt a(n) {card3}')   
-pause()
+if continueplaying=='yes':
+    listofcards=[card1,card2,card3,card4,card5,card6,card7,card8,card9,card10,card11,card12,card13,card14,card15,card16,card17,card18,card19,card20,card21,card22,card23,card24,card25,card26,card27,card28,card29,card30]
+    listofcardvalues=[card1score,card2score,card3score,card4score,card5score,card6score,card7score,card8score,card9score,card10score,card11score,card12score,card13score,card14score,card15score,card16score,card17score,card18score,card19score,card20score,card21score,card22score,card23score,card24score,card25score,card26score,card27score,card28score,card29score,card30score]
 
-player1Score += card4score
-print(f'You have been dealt a(n) {card4}')
-pause()
+    for i in range(0,29):
+        randomcard=Card()
+        listofcards[i]=randomcard
+        print(listofcards[i])
+        CardScore=ScoreAssign()
+        listofcardvalues[i]=CardScore
+        print(listofcardvalues[i])
 
-print(f'your total score is currently {player1Score}')
-pause()
+    card1=listofcards[0]
+    card2=listofcards[1]
+    card3=listofcards[2]
+    card4=listofcards[3]
+    card5=listofcards[4]
+    card6=listofcards[5]
+    card7=listofcards[6]
+    card8=listofcards[7]
+    card9=listofcards[8]
+    card10=listofcards[9]
+    card11=listofcards[10]
+    card12=listofcards[11]
+    card13=listofcards[12]
+    card14=listofcards[13]
+    card15=listofcards[14]
+    card16=listofcards[15]
+    card17=listofcards[16]
+    card18=listofcards[17]
+    card19=listofcards[18]
+    card20=listofcards[19]
+    card21=listofcards[20]
+    card22=listofcards[21]
+    card23=listofcards[22]
+    card24=listofcards[23]
+    card25=listofcards[24]
+    card26=listofcards[25]
+    card27=listofcards[26]
+    card28=listofcards[27]
+    card29=listofcards[28]
+    card30=listofcards[29]
 
-MoveOn='no'
-while MoveOn == 'no':
-    action = input('would you like to hit, stand, double bet, insurance, or spilt') #action
-    try:
-        wager=str(wager)
-        MoveOn = 'yes'
-    except:
-        print("invalid")
+    card1score=listofcardvalues[0]
+    card2score=listofcardvalues[1]
+    card3score=listofcardvalues[2]
+    card4score=listofcardvalues[3]
+    card5score=listofcardvalues[4]
+    card6score=listofcardvalues[5]
+    card7score=listofcardvalues[6]
+    card8score=listofcardvalues[7]
+    card9score=listofcardvalues[8]
+    card10score=listofcardvalues[9]
+    card11score=listofcardvalues[10]
+    card12score=listofcardvalues[11]
+    card13score=listofcardvalues[12]
+    card14score=listofcardvalues[13]
+    card15score=listofcardvalues[14]
+    card16score=listofcardvalues[15]
+    card17score=listofcardvalues[16]
+    card18score=listofcardvalues[17]
+    card19score=listofcardvalues[18]
+    card20score=listofcardvalues[19]
+    card21score=listofcardvalues[20]
+    card22score=listofcardvalues[21]
+    card23score=listofcardvalues[22]
+    card24score=listofcardvalues[23]
+    card25score=listofcardvalues[24]
+    card26score=listofcardvalues[25]
+    card27score=listofcardvalues[26]
+    card28score=listofcardvalues[27]
+    card29score=listofcardvalues[28]
+    card30score=listofcardvalues[29]
 
-#if statements
-    if action == 'insurance':
-        if card1== 'ace':
-            print('insurance used')
-            if card2score==10:
-                money += wager/2
-        else:
-            print('Cannot use insurance unless the dealer has an ace face up')
+    print('Hello, welcome to Blackjack.')
+    while MoveOn == 'no':
+        wager = input('How much would you like to wager?')
+        try:
+            wager=int(wager)
+            MoveOn ='yes'
+            money -= wager
+        except:
+            print("invalid")
 
-    if action == 'spilt':
-        if card3==card4:
-            player1Score==card3
-            player1Score2=card4
-        else:
-            print('cannot spilt, different values')
+
+    #actual game
+    #dealer
+    DealerScore += card1score
+    print(f'The dealer has a(n) {card1}, face up') 
+    pause()
+    print(f'the dealer score is currently {DealerScore} without their other card')
+        #player1
+    player1Score += card3score
+    print(f'You have been dealt a(n) {card3}')   
+    pause()
+
+    player1Score += card4score
+    print(f'You have been dealt a(n) {card4}')
+    pause()
+
+    print(f'your total score is currently {player1Score}')
+    pause()
+
+    MoveOn='no'
+    while MoveOn == 'no':
+        action = input('would you like to hit, stand, double(the bet),insurance, or spilt') #action
+        try:
+            wager=str(wager)
+            MoveOn = 'yes'
+        except:
+            print("invalid")
+
+    #if statements
+        if action == 'insurance':
+            if card1== 'Ace':
+                print('insurance used')
+                if card2score==10:
+                    money += wager/2
+                else:
+                    pass
+                MoveOn='yes'
+            else:
+                print('Cannot use insurance unless the dealer has an Ace face up')
+        elif action == 'spilt':
+            if card3==card4:
+                player1Score=card3
+                player1Score2=card4
+            else:
+                print('cannot spilt, different values')
+        elif action =='double':
+            money -= wager
+            wager = wager*2
+        elif action == 'stand':
+            MoveOn= 'yes'
+        elif action=='hit':
+            player1Score += card5score
+            print(f'You have been dealt a(n) {card5}')
+            print(f'your total score is currently {player1Score}')
+            pause()
+            winlosscheck(player1Score,DealerScore)
+
+    if winlosstie== 'yes':
+        money+= wager*2
+    elif winlosstie== 'tie':
+        money+= wager
+    else:
+        pass
+    continueplaying='no'
+    continueplaying=input('want to keep playing?')
+        
