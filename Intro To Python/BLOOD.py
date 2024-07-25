@@ -20,7 +20,7 @@ def Stats(v1,v2,v3,v4): #stats
     print ("Health:",v1," money:",v2," time:",v3," sanity:",v4)
 Stats(health,money,clock,sanity)
 # bunker in the forest with phones and bombs, gingers are evil
-def Dice(): #random dice
+def Dice(): #random dicef
     diceroll = random.randint(1,20)
     import time
     time.sleep(1)
