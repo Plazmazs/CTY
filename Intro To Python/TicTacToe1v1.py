@@ -80,7 +80,6 @@ while play=='yes':
             elif board[0][2]==board[1][1]==board[2][0]:
                 win ='yes'
             if win=='yes':
-                gameplay='no'
                 if moves%2==1:
                     if X=='player1':
                         player1wins+=1
@@ -97,6 +96,7 @@ while play=='yes':
                     print(f'{player1name} wins!')
                 if result=='player2':
                     print(f'{player2name} wins!')
+                gameplay='no'
             else:
                 pass
         if moves==9:
