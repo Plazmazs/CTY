@@ -1,61 +1,74 @@
-import random
-
-start='no'
-team = ''
+import time
+play='yes'
+win=''
+player1name=''
+player2name=''
+player1letter='X'
+player2letter='O'
+result=''
+player1turn=''
+player2turn=''
+player1wins=0
+player2wins=0
+X='player1'
+O='player2'
+gameplay=''
+ties=''
 row= 0
 column= 0
-ai= 'yes'
-aiturn= ''
-turn = 'no'
-end = 0
-win = ''
-corner=''
-edge=''
-A= 0 # ai failed moves
+moves = 0
 board=[['_','_','_'],['_','_','_'],['_','_','_']]
-for i in board:
-    print(i)
+def gameboard():
+    for i in board:
+        print(i)
 
-while start=='no': #X or O
-    team = input('X or O')
-    if team == "X":
-        start = 'yes'
-        turn = 'yes'
-        ai = "O"
-        aiturn= 'no'
-    elif team == "O":
-        start = 'yes'
-        turn = 'no'
-        ai = "X"
+while play=='yes':
+    player1name=input('player 1, what is your name>>  ')
+    player2name=input('player 2, what is your name>>  ')
 
-while start=='yes':
-    if win =='yes':
-        print('win')
-        start=""
-    elif end == 9:
-        print('tie')
-        start=""
-    elif win =='no':
-        print('loss')
-        start=""
+    board=[['_','_','_'],['_','_','_'],['_','_','_']]
+    moves=0
+    player1result=''
+    player2result=''
+    gameplay='yes'
+    while gameplay=='yes':
+        if moves%2==0:
+            if player1letter=='X':
+                print(f'{player1name}, its your move')
+            if player2letter=='X':
+                print(f'{player2name}, its your move')
 
+            row= int(input('row(1-3)>> '))-1
+            column = int(input('column(1-3)>> '))-1
+            try:
+                if board[row][column]== '_':
+                    board[row][column]='X'
+                    gameboard()
+                    moves+=1
+            except:
+                pass
 
-    if turn =='yes':    
-        row= int(input('row(1-3)>> '))-1
-        column = int(input('column(1-3)>> '))-1
-        if board[row][column]== '_':
-            board[row][column]=team
-            for i in board:
-                print(i)
-            turn = 'no'
-            end+=1
-            
+        elif moves%2==1:
+            if player1letter=='O':
+                print(f'{player1name}, its your move')
+            if player2letter=='O':
+                print(f'{player2name}, its your move')
+
+            row= int(input('row(1-3)>> '))-1
+            column = int(input('column(1-3)>> '))-1
+            try:
+                if board[row][column]== '_':
+                    board[row][column]='O'
+                    gameboard()
+                    moves+=1
+            except:
+                pass       
+                    
+            else:
+                print('invalid row or column')
+                gameboard()
                 
-        else:
-            print('invalid row or column')
-            for i in board:
-                print(i)
-        if end >=5: # check for win
+        if moves >=5: # check for win
             for i in range(0,2):
                 if board[i][0]==board[i][1]==board[i][2]:
                     win ='yes'
@@ -64,89 +77,48 @@ while start=='yes':
                     win ='yes'
             if board[0][0]==board[1][1]==board[2][2]:
                 win ='yes'
-            if board[0][2]==board[1][1]==board[2][0]:
+            elif board[0][2]==board[1][1]==board[2][0]:
                 win ='yes'
-
-    else:
-        #going first
-        if end==0:
-            row = 1
-            column =1
-
-        elif end==2:
-            if A==0:
-                row = 0
-                column =0  
+            if win=='yes':
+                gameplay='no'
+                if moves%2==1:
+                    if X=='player1':
+                        player1wins+=1
+                    else:
+                        player2wins+=1
+                    result=X
+                elif moves%2==0:
+                    if O=='player1':
+                        player1wins+=1
+                    else:
+                        player2wins+=1
+                    result=X
+                if result=='player1':
+                    print(f'{player1name} wins!')
+                if result=='player2':
+                    print(f'{player2name} wins!')
             else:
-                row = 2
-                column =2
-
-        elif end==4:
-            if A==0:
-                row = 2
-                column =2
-            elif A==1:
-                row = 0
-                column =2
-            else:
-                row = 2
-                column =0
-
-        elif end==6:
-            if A==0:
-                row = 0
-                column =2
-            elif A==1:
-                row = 2
-                column =0
-            elif A==2:
-                row = 0
-                column =1
-            else:
-                row = 1
-                column =0
-        #going 2nd
-        elif end==1:
-            if A==0:
-                row = 1
-                column =1    
-            else:
-                row = 0
-                column =0
-
-        elif end==3:
-            if A==0:
-                row = 0
-                column =0
-            else:
-                row = 0
-                column =2
-    
-        
+                pass
+        if moves==9:
+            result='tie'
+            ties+=1
+            print('tie!')
 
 
 
-        if board[row][column]== '_':
-            board[row][column]=ai
-            for i in board:
-                print(i)
-            turn ='yes'
-            end+=1
-            A=0
-            
-        else:
-            A=+1
-        if end >=5: # check for win
-            for i in range(0,2):
-                if board[i][0]==board[i][1]==board[i][2]:
-                    win ='no'
-            for c in range(0,2):
-                if board[0][c]==board[1][c]==board[2][c]:
-                    win ='no'
-            if board[0][0]==board[1][1]==board[2][2]:
-                win ='no'
-            if board[0][2]==board[1][1]==board[2][0]:
-                win ='no'
+    #end of game stuff to keep playing and restart     
+    print(f'{player1name} has {player1wins} and {player2name} has {player2wins} and there have been {ties} ties')       
+    play=input('want to keep playing>>  ')
+    if player1letter=='X':
+        player1letter='O'
+        player2letter="X"
+        X='player2'
+        O='player1'
+    if player1letter=='O':
+        player1letter='X'
+        player2letter="O"
+        X='player1'
+        O='player2'
 
 
 

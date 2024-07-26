@@ -2,14 +2,6 @@ import random
 import time
 money=0
 DealerScore =0
-player1Score = 0
-player1Score2 = 0
-player1Score3 = 0
-player1Score4 = 0
-player2Score = 0
-player2Score2 = 0
-player2Score3 = 0
-player2Score4 = 0
 CardScore=0
 wager = 0
 MoveOn= 'no'
@@ -79,7 +71,7 @@ card28score=0
 card29score=0
 card30score=0
 winlosstie=''
-
+continuefoward=''
 def pause(): #pause() for 2 sec
     import time
     time.sleep(2)
@@ -123,6 +115,7 @@ def winlosscheck(v1,v2):
         winlosstie='loss'
         MoveOn='yes'
         print('you busted!')
+        
 
     elif(v1==21):
         if v1==v2:
@@ -138,20 +131,21 @@ def winlosscheck(v1,v2):
         winlosstie=''
         MoveOn='no'
 
-    return(winlosstie,MoveOn)
+    return(winlosstie,MoveOn,)
     
 
-if continueplaying=='yes':
+while continueplaying=='yes':
+    player1Score = 0
+    DealerScore=0
     listofcards=[card1,card2,card3,card4,card5,card6,card7,card8,card9,card10,card11,card12,card13,card14,card15,card16,card17,card18,card19,card20,card21,card22,card23,card24,card25,card26,card27,card28,card29,card30]
     listofcardvalues=[card1score,card2score,card3score,card4score,card5score,card6score,card7score,card8score,card9score,card10score,card11score,card12score,card13score,card14score,card15score,card16score,card17score,card18score,card19score,card20score,card21score,card22score,card23score,card24score,card25score,card26score,card27score,card28score,card29score,card30score]
 
     for i in range(0,29):
         randomcard=Card()
         listofcards[i]=randomcard
-        print(listofcards[i])
         CardScore=ScoreAssign()
         listofcardvalues[i]=CardScore
-        print(listofcardvalues[i])
+        
 
     card1=listofcards[0]
     card2=listofcards[1]
@@ -229,9 +223,9 @@ if continueplaying=='yes':
     #actual game
     #dealer
     DealerScore += card1score
+    DealerScore += card2score
     print(f'The dealer has a(n) {card1}, face up') 
     pause()
-    print(f'the dealer score is currently {DealerScore} without their other card')
         #player1
     player1Score += card3score
     print(f'You have been dealt a(n) {card3}')   
@@ -246,12 +240,7 @@ if continueplaying=='yes':
 
     MoveOn='no'
     while MoveOn == 'no':
-        action = input('would you like to hit, stand, double(the bet),insurance, or spilt') #action
-        try:
-            wager=str(wager)
-            MoveOn = 'yes'
-        except:
-            print("invalid")
+        action = input('would you like to hit, stand, double(the bet), or insurance') #action
 
     #if statements
         if action == 'insurance':
@@ -260,34 +249,182 @@ if continueplaying=='yes':
                 if card2score==10:
                     money += wager/2
                 else:
-                    pass
+                    continuefoward='no'
                 MoveOn='yes'
             else:
                 print('Cannot use insurance unless the dealer has an Ace face up')
-        elif action == 'spilt':
-            if card3==card4:
-                player1Score=card3
-                player1Score2=card4
-            else:
-                print('cannot spilt, different values')
         elif action =='double':
             money -= wager
             wager = wager*2
+            print('doubled')
+            action='hit'
         elif action == 'stand':
             MoveOn= 'yes'
+
         elif action=='hit':
             player1Score += card5score
             print(f'You have been dealt a(n) {card5}')
             print(f'your total score is currently {player1Score}')
             pause()
-            winlosscheck(player1Score,DealerScore)
-
+            continuefoward='no'
+            winlosstie =winlosscheck(player1Score,DealerScore)
+            MoveOn='yes'
+            if winlosstie== 'win' or winlosstie == 'tie' or winlosstie=='loss'or player1Score>=21:
+                continuefoward='yes'
+                MoveOn='yes'
+                action=''
+                print('blackjack')
+            if continuefoward=='no':
+                action = input('would you like to hit or stand') #action
+        
+        if action=='hit':
+            player1Score += card6score
+            print(f'You have been dealt a(n) {card6}')
+            print(f'your total score is currently {player1Score}')
+            pause()
+            continuefoward='no'
+            winlosstie = winlosscheck(player1Score,DealerScore)
+            if winlosstie== 'win' or winlosstie == 'tie' or winlosstie=='loss' or player1Score>=21 :
+                MoveOn='yes'
+                continuefoward='yes'
+                action=''
+                print('blackjack')
+            if continuefoward=='no':
+                action = input('would you like to hit or stand') #action
+                
+                if action=='hit':
+                    player1Score += card7score
+                    print(f'You have been dealt a(n) {card7}')
+                    print(f'your total score is currently {player1Score}')
+                    pause()
+                    continuefoward='no'
+                    winlosstie = winlosscheck(player1Score,DealerScore)
+                    if winlosstie== 'win' or winlosstie == 'tie'or winlosstie=='loss'or player1Score>=21:
+                        continuefoward='yes'
+                        MoveOn='yes'
+                        action=''
+                        print('blackjack')
+                    if continuefoward=='no':
+                        action = input('would you like to hit or stand') #action
+                        
+                        if action=='hit':
+                            player1Score += card8score
+                            print(f'You have been dealt a(n) {card8}')
+                            print(f'your total score is currently {player1Score}')
+                            pause()
+                            continuefoward='no'
+                            winlosstie = winlosscheck(player1Score,DealerScore)
+                            if winlosstie== 'win' or winlosstie == 'tie'or winlosstie=='loss'or player1Score>=21:
+                                continuefoward='yes'
+                                MoveOn='yes'
+                                action=''
+                                print('blackjack')
+                            if continuefoward=='no':
+                                action = input('would you like to hit or stand') #action
+                                
+                                if action=='hit':
+                                    player1Score += card9score
+                                    print(f'You have been dealt a(n) {card9}')
+                                    print(f'your total score is currently {player1Score}')
+                                    pause()
+                                    continuefoward='no'
+                                    winlosstie = winlosscheck(player1Score,DealerScore)
+                                    if winlosstie== 'win' or winlosstie == 'tie'or winlosstie=='loss'or player1Score>=21:
+                                        continuefoward='yes'
+                                        MoveOn='yes'
+                                        action=''
+                                elif action == 'stand':
+                                    continuefoward='yes'
+                                    action =''
+                                else:
+                                    continuefoward='yes'
+                                    action =''
+                        elif action == 'stand':
+                            continuefoward='yes'
+                            action =''
+                        else:
+                            continuefoward='yes'
+                            action =''
+                elif action == 'stand':
+                    continuefoward='yes'
+                    action =''
+                else:
+                    continuefoward='yes'    
+                    action =''    
+        elif action == 'stand':
+            continuefoward='yes'
+            action =''
+        else:
+            continuefoward='yes'
+            action =''
+    else:
+        continuefoward='yes'
+        action =''
+        
     if winlosstie== 'yes':
         money+= wager*2
     elif winlosstie== 'tie':
         money+= wager
     else:
+        continuefoward='no'
+        action =''
+
+    MoveOn='no'
+    
+
+    if winlosstie== 'yes':
+        money+= wager*2
+    elif winlosstie== 'tie':
+        money+= wager
+    elif player1Score ==21:     
+        money+= wager*2
+    elif player1Score >21:     
         pass
-    continueplaying='no'
-    continueplaying=input('want to keep playing?')
-        
+    else:
+        print(f'the dealer has {DealerScore}')
+        if DealerScore>21:
+            money+= wager*2
+            print('the house busted!!')
+        elif DealerScore>player1Score:
+            print(f'dealer wins {DealerScore} to {player1Score}')
+            
+        else:
+            DealerScore += card10score
+            print(f'The dealer got an {card10}')
+            print(f'the dealer has {DealerScore}')
+            pause()
+            if DealerScore>21:
+                money+= wager*2
+                print('the house busted!!')
+            elif DealerScore>player1Score:
+                print(f'dealer wins {DealerScore} to {player1Score}')
+            elif DealerScore>=17:
+                money+= wager*2
+            else:
+                DealerScore += card11score
+                print(f'The dealer also has a(n) {card11}')
+                print(f'the dealer has {DealerScore}')
+                pause()
+                if DealerScore>21:
+                    money+= wager*2
+                    print('the house busted!!')
+                elif DealerScore>player1Score:
+                    print(f'dealer wins {DealerScore} to {player1Score}')
+                elif DealerScore>=17:
+                    money+= wager*2
+                else:
+                    DealerScore += card12score
+                    print(f'The dealer also has a(n) {card12}')
+                    print(f'the dealer has {DealerScore}')
+                    pause()
+                    if DealerScore>21:
+                        money+= wager*2
+                        print('the house busted!!')
+                    if DealerScore>player1Score:
+                        print(f'dealer wins {DealerScore} to {player1Score}')
+                    elif DealerScore>=17:
+                        money+= wager*2
+    print(f'you have {money} dollars')
+    continueplaying=str(input('want to keep playing?'))
+
+print('hope you enjoyed')
