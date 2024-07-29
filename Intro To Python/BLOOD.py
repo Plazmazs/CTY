@@ -164,6 +164,7 @@ else: #run
     diceroll=Dice()
     if diceroll<6:
         caught= 1
+        
 
 
 if caught==1: #caught
@@ -185,7 +186,7 @@ if caught==1: #caught
             healthloss = int((20-diceroll)*3)
             print(f'you lost {healthloss} health')
             Stats(health,money,clock,sanity)
-            =1
+            fight=1
     else: #got away
         escape=1
         

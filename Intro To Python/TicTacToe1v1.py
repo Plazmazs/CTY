@@ -80,13 +80,13 @@ while play=='yes':
             elif board[0][2]==board[1][1]==board[2][0]:
                 win ='yes'
             if win=='yes':
-                if moves%2==1:
+                if moves%2==0:
                     if X=='player1':
                         player1wins+=1
                     else:
                         player2wins+=1
                     result=X
-                elif moves%2==0:
+                elif moves%2==1:
                     if O=='player1':
                         player1wins+=1
                     else:
@@ -119,7 +119,3 @@ while play=='yes':
         player2letter="O"
         X='player1'
         O='player2'
-
-
-
-

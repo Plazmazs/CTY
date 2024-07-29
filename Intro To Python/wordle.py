@@ -1,4 +1,4 @@
-actualword='stick'
+actualword='whore'
 print('Welcome to Wordle, you have 6 chances to guess a 5 letter word, good luck.')
 validguess='no'
 letter1=actualword[0]
@@ -16,26 +16,25 @@ guess5=""
 guess6=""
 guesses=0
 board=[['_','_','_','_','_'],['_','_','_','_','_'],['_','_','_','_','_'],['_','_','_','_','_'],['_','_','_','_','_'],['_','_','_','_','_']]
-
-            
-
+for a in board:
+    print(a)
+        
 while guesses<6:
     guess=input('what is your guess>> ')
     if len(guess)==5:
         try:
-            guess=str(guess)
-            if guesses==0:
-                guess1=guess
-                guesses+=1
-                for i in range[0,4]:
-                    board[0][i]=guess1[i]
-                    print(board)
+            guess=str(guess)         
+            
+            for b in range(0,5):
+                if guess[b]==letters[b]:
+                    board[guesses][b]=guess[b]
+                    board[guesses][b].capitalize
+                else:
+                    board[guesses][b]=guess[b]
                 
-            if guesses==1:
-                guess1=guess
-                guesses+=1
-                
-
+            for a in board:
+                print(a)
+            guesses+=1             
         except:
             pass
     else:
