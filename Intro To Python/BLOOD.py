@@ -1,6 +1,5 @@
 import random
 import time
-
 diceroll = 0
 # health starts at 80 
 health = 80
@@ -11,7 +10,6 @@ money = 20
 # 1 to 24, military time
 # JAUNT
 clock = 6
-healthloss =int
 action = ''
 caught= 0
 fight= 0
@@ -27,7 +25,6 @@ def Dice(): #random dicef
     print(f'you rolled a {diceroll}')
     pause()
     return diceroll
-
 
 def pause(): #pause() for 2 sec
     import time
@@ -96,9 +93,6 @@ if(action=='yes'):    #going to water plants
         pause()
         print('you notice a young man maybe 18 years old walking on the sidewalk staring at you. his face looks hollow and he looks starved. he has flecks of dried blood around his mouth. he is 5 foot nine and has orange hair and a tattered hoodie and jeans')
         pause()
-        gingerEncounterCindyHouse = input('would you like to (go) inside, run (home), approach>> ')
-        pause()
-        diceroll=Dice()
     else:
         print('you water the plants and cindy gives you five dollars')
         pause()
@@ -124,8 +118,15 @@ if(action=='yes'):    #going to water plants
                 print('as you are walking away, you see the skin of the old woman fall and a young man around 5 foot nine and ginger hair, skinwalker?')
                 money =+10
                 clock=12
+validanswer='no'
+while validanswer=='no':
+    gingerEncounterCindyHouse = input('would you like to (go) inside, run (home), approach>> ')
+    if gingerEncounterCindyHouse=='inside'or gingerEncounterCindyHouse=='run'or gingerEncounterCindyHouse=='approach':
+        validanswer='yes'
 
-
+pause()
+diceroll=Dice()
+    
 if(gingerEncounterCindyHouse=="inside"): #choose inside
     if(diceroll<5):
         print('the door is locked, the man walks directly at you')
@@ -157,11 +158,53 @@ if(gingerEncounterCindyHouse=="inside"): #choose inside
             print('you hear running upstairs and cindy comes down but you notice a strand of red hair on her, odd considering that she has gray hair, also flecks on blood on her hair. odd.')
             print('cindy gives you 4 dollars for your work')
             money=+4
-# inside
-if(gingerEncounterCindyHouse=="approach"): #choose approach
 
-else: #run 
+if(gingerEncounterCindyHouse=="approach"): #choose approach
+    print('he stares at you and grunts, walking towards you')
+    pause()
+    gingerEncounterCindyHouse=input('would you like to try to talk or run')
+    validanswer='no'
+    while validanswer=='no':
+        if gingerEncounterCindyHouse=='talk'or gingerEncounterCindyHouse=='run':
+            validanswer='yes'
+        else:
+            pass
+    
+        pause()
+        if gingerEncounterCindyHouse=='run':
+            print('he tries to chase you')
+            pause()
+            diceroll=Dice()
+            if diceroll<10:
+                caught=1
+            else:
+                escape=1
+        if gingerEncounterCindyHouse=='talk':
+            print('you say')
+            print('hello?')
+            pause()
+            print('he grunts and runs towards you')
+            gingerEncounterCindyHouse=input('would you like to try to run or fight')
+            while validanswer=='no':
+                if gingerEncounterCindyHouse=='fight'or gingerEncounterCindyHouse=='run':
+                    validanswer='yes'
+                else:
+                    pass
+        if gingerEncounterCindyHouse=='run':
+            print('he tries to chase you')
+            pause()
+            diceroll=Dice()
+            if diceroll<15:
+                caught=1
+            else:
+                escape=1
+        if gingerEncounterCindyHouse=='fight':
+            fight=1
+
+
+if gingerEncounterCindyHouse=="run":
     diceroll=Dice()
+    print('he tries to chase you')
     if diceroll<6:
         caught=1
     else:
@@ -171,9 +214,8 @@ if caught==1: #caught
     print('the man runs you down and tackles you to the floor')
     diceroll=Dice()
                 
-    healthloss = int(diceroll*3)
-    print(f'you lost {healthloss} health')
-    health -= healthloss
+    health -= (20-diceroll)*3
+    print(f'you lost {int(diceroll*3)} health')
     Stats(health,money,clock,sanity)
     if(health<=0):
         SystemExit('you died!')
@@ -183,48 +225,65 @@ if caught==1: #caught
         if(diceroll<15):
             print('he tracks you down again')
             diceroll=Dice()
-            healthloss = int((20-diceroll)*3)
-            print(f'you lost {healthloss} health')
+            health -= (20-diceroll)*3
+            print(f'you lost {(20-diceroll)*3} health')
             Stats(health,money,clock,sanity)
             fight=1
     else: #got away
         escape=1
         
 randyhealth=30
-while randyhealth>0:
-    diceroll=Dice()
+if fight==1:
+    while randyhealth>0:
+        diceroll=Dice()
+                
+        if(diceroll<5):
+            print('he lands a mean right hook')
+            diceroll=Dice()
+            health -= (20-diceroll) * 4
             
-    if(diceroll<5):
-        print('he lands a mean right hook')
-        diceroll=Dice()
-        healthloss = (20-diceroll) * 4
-        
-    elif(diceroll<10):
-        print('he hits you in the shoulder')
-        diceroll=Dice()
-        healthloss = (20-diceroll) *2
+        elif(diceroll<10):
+            print('he hits you in the shoulder')
+            diceroll=Dice()
+            health -= (20-diceroll) *2
 
-    elif(diceroll<15):
-        print('he misses and falls over')
-        healthloss = (20-diceroll) *2
+        elif(diceroll<14):
+            print('he misses and falls over')
+            randyhealth = (20-diceroll)*1.5
 
-    
-    elif(diceroll>=19):
-        print('you pick up a big metal rod and smash it over his head, knocking him out on impact')
-        print('you search the body and find an id card naming him as randy kelly')
-        print('you find a hundred dollars')
-        money+=30
-        randyhealth=0
         
-    if randyhealth<=0:
-        print(f'randy gets up and runs away, you escape')
-        escape=1
-    health-=healthloss
-    Stats(health,money,clock,sanity)
-    print(f'he has {randyhealth} health left')
+        elif(diceroll>=19):
+            print('you pick up a big metal rod and smash it over his head, knocking him out on impact')
+            print('you search the body and find an id card naming him as randy kelly')
+            print('you find a hundred dollars')
+            print()
+            money+=100
+            randyhealth=0
+            print('you find a note that says order for 1 iphone')
+            print('the address is to the house of cindy')  
+        else: #14-18
+            print('you dodge and hit him in the side of the head')
+            randyhealth = (20-diceroll)*3
+
+            
+        if randyhealth<=0:
+            print(f'randy lies on the ground, clearly hurt, he tries to chase you.')
+            escape=1
+        if health<=0:
+            print('you died!')
+            break
+        Stats(health,money,clock,sanity)
+        print(f'he has {randyhealth} health left')
 
 
 if escape==1:
     print('he trips and runs away, you got home and made yourself some food')
     health =+ 5
     Stats(health,money,clock,sanity)    
+    clock=15
+
+if clock==12:
+    action=input('would you like to go for a run>> ')
+
+if action=="run":
+    pass
