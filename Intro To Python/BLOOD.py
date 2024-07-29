@@ -33,6 +33,7 @@ def pause(): #pause() for 2 sec
     import time
     time.sleep(2)
 
+#info
 name = input("Hello, what is your mame >> ")
 print(f'hello {name}, you are a student who has recently moved from pasadena california')
 pause()
@@ -74,7 +75,6 @@ else:
     elif(diceroll>10):
         clock= 6
 Stats(health,money,clock,sanity)
-cindyfriend= "no"
 pause()
 
 if (clock == 6):
@@ -163,9 +163,9 @@ if(gingerEncounterCindyHouse=="approach"): #choose approach
 else: #run 
     diceroll=Dice()
     if diceroll<6:
-        caught= 1
-        
-
+        caught=1
+    else:
+        escape=1
 
 if caught==1: #caught
     print('the man runs you down and tackles you to the floor')
@@ -190,26 +190,39 @@ if caught==1: #caught
     else: #got away
         escape=1
         
-
-if fight==1:
+randyhealth=30
+while randyhealth>0:
     diceroll=Dice()
             
     if(diceroll<5):
         print('he lands a mean right hook')
         diceroll=Dice()
-
         healthloss = (20-diceroll) * 4
+        
     elif(diceroll<10):
         print('he hits you in the shoulder')
         diceroll=Dice()
-
         healthloss = (20-diceroll) *2
 
     elif(diceroll<15):
         print('he misses and falls over')
-    elif(diceroll<20):
+        healthloss = (20-diceroll) *2
+
+    
+    elif(diceroll>=19):
         print('you pick up a big metal rod and smash it over his head, knocking him out on impact')
-        print('you search the body and find an id card ')
+        print('you search the body and find an id card naming him as randy kelly')
+        print('you find a hundred dollars')
+        money+=30
+        randyhealth=0
+        
+    if randyhealth<=0:
+        print(f'randy gets up and runs away, you escape')
+        escape=1
+    health-=healthloss
+    Stats(health,money,clock,sanity)
+    print(f'he has {randyhealth} health left')
+
 
 if escape==1:
     print('he trips and runs away, you got home and made yourself some food')
