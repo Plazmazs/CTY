@@ -286,4 +286,10 @@ if clock==12:
     action=input('would you like to go for a run>> ')
 
 if action=="run":
-    pass
+    diceroll=Dice()    
+    if(diceroll<5):
+        print('smth happens')
+    else:
+        print('you had a nice run and feel great')
+        health+=20
+        Stats(health,money,clock,sanity)
