@@ -169,7 +169,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                             print('you dodged the attack')
                     TravTurn=1
                 if Enemyname=='kendrick':
-                    if Enemyhp>20:
+                    if Enemyhp>30:
                         print(f'{Enemyname} uses main attack, roll to dodge')
                         diceroll=Dice('you')
                         if 20-diceroll>Travisdodging:
@@ -303,7 +303,7 @@ while dead=='no':
     print('youll be healed up soon')
     pause()
     print('a zombie ambushes you')
-    Zombie=character('zombie',40,10,1,10,50,0,0,0,0)
+    Zombie=character('zombie',40,15,1,10,50,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('nice job, now its time to go the trap')
@@ -350,13 +350,13 @@ while dead=='no':
     pause()
     pause()
     phone=input('would you like to pick up the phone>>>  ')
-    if phone=='yes':
+    if phone=='yes'or phone=='Yes' or phone=='sure':
         Travis.Upgrade('')
     else:
         Travis.hp-=20
         print(f'terrible decision you lose 20 health')
     print('you encounter a young thug and hes armed with a bat')
-    YoungThug=character('YoungThug',35,20,1,1,35,0,0,0,0)
+    YoungThug=character('YoungThug',60,30,3,1,35,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,YoungThug.name,YoungThug.hp,YoungThug.dmg,YoungThug.dodging,YoungThug.priority,YoungThug.maxhealth,YoungThug.applepie,YoungThug.astrothunder,YoungThug.sickomode,SuperPoints)
     Travis.Upgrade('')
     pause()
@@ -365,7 +365,7 @@ while dead=='no':
     print('suddenly, birds from the trap attack!')
     pause()
     print('they are very elusive')
-    bird=character('bird',60,5,15,10,60,0,0,0,0)
+    bird=character('bird',100,5,15,10,60,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,bird.name,bird.hp,bird.dmg,bird.dodging,bird.priority,bird.maxhealth,bird.applepie,bird.astrothunder,bird.sickomode,SuperPoints)
     print('you finally killed all the birds')
     pause()
@@ -381,7 +381,7 @@ while dead=='no':
     pause()
     print('hes an angry little dwarf and his name is kendrick lamar')
     pause()
-    kendrick=character('kendrick',75,20,4,3,75,0,0,0,0)
+    kendrick=character('kendrick',150,20,4,3,75,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,kendrick.name,kendrick.hp,kendrick.dmg,kendrick.dodging,kendrick.priority,kendrick.maxhealth,kendrick.applepie,kendrick.astrothunder,kendrick.sickomode,SuperPoints)
     Travis.Upgrade('')
     pause()
@@ -393,7 +393,7 @@ while dead=='no':
     pause()
     print('a huge bird comes diving down')
     pause()
-    bigbird=character('bigbird',30,15,15,10,60,0,0,0,0)
+    bigbird=character('bigbird',60,15,15,10,60,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,bigbird.name,bigbird.hp,bigbird.dmg,bigbird.dodging,bigbird.priority,bigbird.maxhealth,bigbird.applepie,bigbird.astrothunder,bigbird.sickomode,SuperPoints)
     print('you killed it!')
     pause()
@@ -458,7 +458,7 @@ while dead=='no':
         print('ur dumb')
 
     print('you see an army of skeletons')
-    skeletons=character('skeletons',200,15,2,0,200,0,0,0,0)
+    skeletons=character('skeletons',300,20,2,0,200,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,skeletons.name,skeletons.hp,skeletons.dmg,skeletons.dodging,skeletons.priority,skeletons.maxhealth,skeletons.applepie,skeletons.astrothunder,skeletons.sickomode,SuperPoints)
     print('nice job')
     Travis.Upgrade('')
@@ -470,8 +470,8 @@ while dead=='no':
     print('roll to dodge')
     pause()
     diceroll=Dice('you')
-    Travis.hp-=diceroll*4
-    print(f'you take {diceroll*5} damage')
+    Travis.hp-=diceroll*3
+    print(f'you take {diceroll*3} damage')
     if Travis.hp <=0:
         dead='yes'
     else:
@@ -482,7 +482,7 @@ while dead=='no':
     print('drake appears.')
     pause()
     print('you will fight to see who makes it to utopia.')
-    Drake=character('Drake',100,20,4,2,100,0,0,0,40)
+    Drake=character('Drake',200,20,4,2,100,0,0,0,40)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Drake.name,Drake.hp,Drake.dmg,Drake.dodging,Drake.priority,Drake.maxhealth,Drake.applepie,Drake.astrothunder,Drake.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('you have defeated Drake.')
