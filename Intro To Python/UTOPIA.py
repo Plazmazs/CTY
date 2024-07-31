@@ -487,6 +487,10 @@ while dead=='no':
     Travis.Upgrade('')
     print('you have defeated Drake.')
     pause()
+    print('you now have the ability called sicko mode.')
+    pause()
+    print('base sicko mode deals 30 damage and heals for 30 health')
+    pause()
     pause('you will go to utopia')
     
     
