@@ -108,8 +108,8 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                 if SuperPoints>=6:
                     SuperPoints -= 6
                     print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
-                    20-diceroll=Dice(Enemyname)
-                    if diceroll>Enemydodging:
+                    diceroll=Dice(Enemyname)
+                    if 20-diceroll>Enemydodging:
                         Enemyhp-=Travisastrothunder
                         print(f'you did {Travisastrothunder} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')    
                     else:
