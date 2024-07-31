@@ -43,19 +43,19 @@ class character:
             if choice=='health' or choice=='damage'or choice=='dodging'or choice=='applepie'  or choice=='apple pie' or choice=='astrothunder'or choice=='sicko mode' or choice=='sickomode'  :
                 if choice == 'health':
                     self.maxhealth+=random.randint(3,14)
-                    print(f'max health is now {self.maxhealth}')
+                    print(f'max health is now {self.maxhealth} health')
                 elif choice == 'damage':
-                    self.dmg+=random.randint(3,8)
+                    self.dmg+=random.randint(1,8)
                     print(f'its lit now deals {self.dmg} damage')
                 elif choice == 'dodging':
                     self.dodging+=random.randint(1,2)
                     print(f'dodging skill is now {self.dodging}')
                 elif choice == 'applepie':
                     self.applepie+=random.randint(5,15)
-                    print(f'apple pie now heals for {self.applepie}')
+                    print(f'apple pie now heals for {self.applepie} health')
                 elif choice == 'astrothunder':
                     self.astrothunder+=random.randint(10,25)
-                    print(f'astrothunder now deals {astrothunder} damage')
+                    print(f'astrothunder now deals {self.astrothunder} damage')
                 elif choice == 'sicko mode':
                     self.sickomode+=random.randint(10,20)
                     print(f'its sicko mode now deals and heals for {self.sickomode} damage')
@@ -87,14 +87,14 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
             if AttackType == "itslit" or AttackType =='its lit':
                 print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
                 diceroll=Dice(Enemyname)
-                if diceroll>Enemydodging:
+                if 20-diceroll>Enemydodging:
                     SuperPoints+=1
                     Enemyhp-=Travisdmg
                     print(f'travis did {Travisdmg} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')    
                 else:
                     print(f'{Enemyname} dodged {AttackType}')    
                 TravTurn=0                    
-            elif AttackType == "applepie" or AttackType=='Apple pie':
+            elif AttackType == "applepie" or AttackType=='apple pie':
                 if SuperPoints>=3:
                     SuperPoints -= 3
                     Travishp+=Travisapplepie
@@ -108,7 +108,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                 if SuperPoints>=6:
                     SuperPoints -= 6
                     print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
-                    diceroll=Dice(Enemyname)
+                    20-diceroll=Dice(Enemyname)
                     if diceroll>Enemydodging:
                         Enemyhp-=Travisastrothunder
                         print(f'you did {Travisastrothunder} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')    
@@ -127,7 +127,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                     pause()
                     print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
                     diceroll=Dice(Enemyname)
-                    if diceroll>Enemydodging:
+                    if 20-diceroll>Enemydodging:
                         Enemyhp+=Travissickomode
                         print(f'you did {Travissickomode} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')
                     else:
@@ -254,7 +254,7 @@ while dead=='no':
     print('your attack is called its lit')
     pause()
     Travis=character('travis',100,15,4,3,100,25,40,30,0)
-    Zombie=character('zombie',40,10,1,1,40,0,0,0,0)
+    Zombie=character('zombie',50,10,1,1,40,0,0,0,0)
 
     print('you are walking towards the rodeo when you encounter a zombie')
     pause()
@@ -266,7 +266,7 @@ while dead=='no':
     pause()
     print('you spot a mama armed with an apple pie and shes angry')
     print('https://youtu.be/cLx87ceoNT8?si=pwd7Y5VUH42dDu_I')
-    Mama=character('mama',60,7,1,7,60,25,0,0,0)
+    Mama=character('mama',60,8,1,7,60,25,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Mama.name,Mama.hp,Mama.dmg,Mama.dodging,Mama.priority,Mama.maxhealth,Mama.applepie,Mama.astrothunder,Mama.sickomode,SuperPoints)
     pause()
     print(' ')
@@ -282,7 +282,7 @@ while dead=='no':
     Travis.Upgrade('')
 
     print('you now encounter a zombie with armor')
-    Zombie=character('zombie',70,10,1,1,70,0,0,0,0)
+    Zombie=character('zombie',70,11,1,1,70,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('that was pretty easy wasnt it!')
@@ -291,7 +291,7 @@ while dead=='no':
     pause()
     print('https://youtu.be/rNr6X0_vmWM?si=6wDY1yYtUY-rCSDm')
     print('the nightcrawler, a huge black cat jumps from a tree')
-    nightcrawler=character('nightcrawler',75,15,5,15,75,0,0,0,0)
+    nightcrawler=character('nightcrawler',75,20,5,15,75,0,0,0,0)
 
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,nightcrawler.name,nightcrawler.hp,nightcrawler.dmg,nightcrawler.dodging,nightcrawler.priority,nightcrawler.maxhealth,nightcrawler.applepie,nightcrawler.astrothunder,nightcrawler.sickomode,SuperPoints)
     print('that was tough, but its only the beginning')
@@ -492,7 +492,7 @@ while dead=='no':
     print('base sicko mode deals 30 damage and heals for 30 health')
     pause()
     pause('you will go to utopia')
-    
+
     
     Travis.hp=Travis.maxhealth
     print(f'travis healed back to {Travis.maxhealth} health')
