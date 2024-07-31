@@ -10,19 +10,22 @@ astrothunder=''
 sickomode=''
 moveon='no'
 
-def Dice(): #random dicef
+def Dice(name): #random dicef
     diceroll = random.randint(1,20)
     import time
     print('rolling dice...')
     time.sleep(1)
-    print(f'you rolled a {diceroll}')
+    print(f'{name} rolled a {diceroll}')
+    print('')
     pause()
     return diceroll
 
 
 
 def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travisapplepie,Travisastrothunder,Travissickomode,Enemyname,Enemyhp,Enemydmg,Enemydodging,Enemypriority,Enemymaxhealth,Enemyapplepie,Enemyastrothunder,Enemysickomode,SuperPoints):
-    diceroll=Dice()
+    print('Roll for first turn')
+    pause()
+    diceroll=Dice('you')
     diceroll += Travispriority
     diceroll -= Enemypriority
     if diceroll>10:
@@ -31,23 +34,28 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
     else:
         TravTurn=0
         print('You will attack 2nd')
+    pause()
     print(f'you are fighting {Enemyname}')
     while Travishp>0 and Enemyhp>0:
         while TravTurn==1:
+            print(' ')
             AttackType=input('what attack do you want to use?')
             if AttackType == "itslit" or AttackType =='its lit':
-                diceroll=Dice()
+                print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
+                diceroll=Dice(Enemyname)
                 if diceroll>Enemydodging:
                     SuperPoints+=1
                     Enemyhp-=Travisdmg
-                    TravTurn=0
-                    print(f'travis did {Travisdmg} to {Enemyname}, the {Enemyname} has {Enemyhp} left')    
+                    print(f'travis did {Travisdmg} to {Enemyname} the {Enemyname} has {Enemyhp} left')    
                 else:
-                    print(f'{Enemyname} dodged {AttackType}')                        
+                    print(f'{Enemyname} dodged {AttackType}')    
+                TravTurn=0                    
             elif AttackType == "applepie" or AttackType=='Apple pie':
                 if SuperPoints>=3:
                     SuperPoints -= 3
                     Travishp+=Travisapplepie
+                    if Travishp>Travismaxhealth:
+                        Travishp=Travismaxhealth
                     TravTurn=0
                     print(f'you healed for {Travisapplepie} you are at {Travishp}')   
                 else:
@@ -55,60 +63,79 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
             elif AttackType == "astrothunder":
                 if SuperPoints>=7:
                     SuperPoints -= 7
-                    diceroll=Dice()
+                    print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
+                    diceroll=Dice(Enemyname)
                     if diceroll>Enemydodging:
                         Enemyhp-=Travisastrothunder
-                        TravTurn=0
                         print(f'you did {Travisastrothunder} to {Enemyname}, the {Enemyname} has {Enemyhp} left')    
                     else:
                         print(f'{Enemyname} dodged {AttackType}')
+                    TravTurn=0
                 else:
                     print('not enough superpoints')
             elif AttackType == "sickomode" or AttackType=='sicko mode':
                 if SuperPoints>=10:
                     SuperPoints -= 10
                     Travishp+=Travissickomode
+                    if Travishp>Travismaxhealth:
+                        Travishp=Travismaxhealth
                     print(f'you healed for {Travissickomode} you are at {Travishp}') 
-                    diceroll=Dice()
+                    pause()
+                    print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
+                    diceroll=Dice(Enemyname)
                     if diceroll>Enemydodging:
                         Enemyhp+=Travissickomode
-                        TravTurn=0
                         print(f'you did {Travissickomode} to {Enemyname}, the {Enemyname} has {Enemyhp} left')
                     else:
                         print(f'{Enemyname} dodged {AttackType}')
+                    TravTurn=0
                 else:
                     print('not enough superpoints')
             else:
-                while AttackType!= 'unlocked':
-                    AttackType=input('what attack do you want to use?')
-                print(f'{Enemyname} dodged the attack')
-                TravTurn=0
-        while TravTurn==0:
-            if Enemyhp>=0:
-                print('the zombie is attacking')
+                print('invalid')
+        if Enemyhp>=0:
+            while TravTurn==0:
+                print(' ')
                 pause()
-                diceroll=Dice()
-                if 20-diceroll>Travisdodging:
-                    if Enemyapplepie != 0:
-                        diceroll=Dice()
-                        if diceroll>=15:
-                            Enemyhp+=Enemyapplepie
-                            print(f'{Enemyname} healed for {Enemyapplepie} and is now at {Enemyhp} health')
-                        else:
-                            Travishp-=Enemydmg
-                            print(f'you took {Enemydmg}, you are at {Travishp} health')
-                    else:
+                print(f'{Enemyname} is attacking')
+                pause()
+                if Enemyname=='zombie':
+                    print(f'{Enemyname} uses main attack, roll to dodge')
+                    diceroll=Dice('you')
+                    if 20-diceroll>Travisdodging:
                         Travishp-=Enemydmg
                         print(f'you took {Enemydmg}, you are at {Travishp} health')
-                    TravTurn=1  
-                else:
-                    print('you dodged the attack')
+                    else:
+                        print('you dodged the attack')
                     TravTurn=1
-            else:
-                break
+                if Enemyname == 'mama':
+                    print(f'{Enemyname} is rolling to decide action.')
+                    diceroll=Dice(Enemyname)
+                    if diceroll>=14:
+                        Enemyhp+=Enemyapplepie
+                        if Enemyhp>Enemymaxhealth:
+                            Enemyhp=Enemymaxhealth
+                        print(f'{Enemyname} healed for {Enemyapplepie} and is now at {Enemyhp} health')
+                    else:
+                        if 20-diceroll>Travisdodging:
+                            Travishp-=Enemydmg
+                            print(f'you took {Enemydmg}, you are at {Travishp} health')
+                        else:
+                            print('you dodged the attack')
+                    TravTurn=1          
+        else:
+            pass
     if Travishp>0:
-        Travishp= (Travismaxhealth-Travishp)/2
+        pause()
+        print(' ')
+        print(f'you healed for {(Travismaxhealth-Travishp)/2} health')
+        pause()
+        int(Travishp)+= (Travismaxhealth-Travishp)/2
         print('you defeated the enemy')
+        print(f'you are at {Travishp} health you have {SuperPoints} SuperPoints')
+        pause()
+
+        
     else:
         print('you died!')
         quit('end')
@@ -137,19 +164,19 @@ class character:
             choice=input('do you want to upgrade health, damage, dodging, apple pie, astrothunder or sicko mode?')
             if choice=='health' or choice=='damage'or choice=='dodging'or choice=='applepie'  or choice=='apple pie' or choice=='astrothunder'or choice=='sicko mode' or choice=='sickomode'  :
                 if choice == 'health':
-                    self.maxhealth+=15
+                    self.maxhealth+=random.randint(6,14)
                 elif choice == 'damage':
-                    self.dmg+=5
+                    self.dmg+=random.randint(3,8)
                 elif choice == 'dodging':
-                    self.dodging+=1
+                    self.dodging+=random.randint(1,2)
                 elif choice == 'applepie':
-                    self.applepie+=10
+                    self.applepie+=random.randint(5,15)
+                    print(f'{self.applepie}')
                 elif choice == 'astrothunder':
-                    self.astrothunder+=20
+                    self.astrothunder+=random.randint(10,25)
                 elif choice == 'sicko mode':
-                    self.sickomode+=15
+                    self.sickomode+=random.randint(10,20)
                 print(f'you upgraded {choice}')
-                moveon='yes'
                 pause()
             else:
                 print('invalid')
@@ -160,21 +187,22 @@ print('you have 100 health and you get healed half after each fight and fully he
 pause()
 print('your attack is called itslit')
 pause()
-Travis=character('travis',100,15,3,2,100,20,40,30,0)
-Zombie=character('zombie,',30,10,0,0,50,0,0,0,0)
+Travis=character('travis',100,15,3,3,100,25,40,30,0)
+Zombie=character('zombie,',40,10,1,1,50,0,0,0,0)
 
 print('you are walking towards the rodeo when you encounter a zombie')
-print('')
+pause()
 Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
 print('congrats, you won your first fight! you get to upgrade a skill.')
 pause()
-Travis.Upgrade()
+Travis.Upgrade('')
 print('you are now in the rodeo')
 pause()
 print('you spot a mama armed with an apple pie and shes angry')
-Mama=character('zombie,',60,5,1,5,50,20,0,0,0)
-Travis.hp,SuperPoints=Combat(Travis.name,Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Mama.name,Mama.hp,Mama.dmg,Mama.dodging,Mama.priority,Mama.maxhealth,Mama.applepie,Mama.astrothunder,Mama.sickomode,SuperPoints)
+Mama=character('mama,',60,7,1,7,50,25,0,0,0)
+Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Mama.name,Mama.hp,Mama.dmg,Mama.dodging,Mama.priority,Mama.maxhealth,Mama.applepie,Mama.astrothunder,Mama.sickomode,SuperPoints)
 pause()
+print(' ')
 print('youve unlocked apple pie!')
 pause()
 pause()
@@ -182,4 +210,4 @@ print('apple pie requires 3 superpoints')
 pause()
 print('you get a powerpoint every time you successfully use your main attack')
 pause()
-print('applepie heals for 20')
+print('applepie heals for you 25')
