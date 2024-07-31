@@ -489,6 +489,7 @@ while dead=='no':
     pause()
     pause('you will go to utopia')
     
+    
     Travis.hp=Travis.maxhealth
     print(f'travis healed back to {Travis.maxhealth} health')
     print(''' █████   ███   █████          ████                                            
