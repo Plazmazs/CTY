@@ -48,16 +48,16 @@ class character:
                     self.dmg+=random.randint(1,8)
                     print(f'its lit now deals {self.dmg} damage')
                 elif choice == 'dodging':
-                    self.dodging+=random.randint(1,2)
+                    self.dodging+=random.randint(0,2)
                     print(f'dodging skill is now {self.dodging}')
                 elif choice == 'applepie':
                     self.applepie+=random.randint(5,15)
                     print(f'apple pie now heals for {self.applepie} health')
                 elif choice == 'astrothunder':
-                    self.astrothunder+=random.randint(10,25)
+                    self.astrothunder+=random.randint(10,30)
                     print(f'astrothunder now deals {self.astrothunder} damage')
                 elif choice == 'sicko mode':
-                    self.sickomode+=random.randint(10,20)
+                    self.sickomode+=random.randint(10,25)
                     print(f'its sicko mode now deals and heals for {self.sickomode} damage')
                 print(f'you upgraded {choice}')
                 pause()
@@ -181,15 +181,15 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                         print('kendrick will try to sing because he is dying of thrist')
                         diceroll=Dice(Enemyname)
                         if diceroll>10:
-                            Enemyhp+=50
-                            print(f'kendrick healed for 50, he is now at {Enemyhp}')
+                            Enemyhp+=Enemymaxhealth
+                            print(f'kendrick healed back to max, he is now at {Enemyhp}')
                         else:
                             print('failed')
                     TravTurn=1   
                 if Enemyname == 'Drake':
                     print(f'{Enemyname} is rolling to decide action.')
                     diceroll=Dice(Enemyname)
-                    if diceroll>=15:
+                    if diceroll>=14:
                         print(f'{Enemyname} used sicko mode!')
                         Enemyhp+=Enemysickomode
                         if Enemyhp>Enemymaxhealth:
@@ -258,7 +258,7 @@ while dead=='no':
     print('your super attack is astrothunder')
     pause()
     print('it does 40 damage and requires 6 power points')
-    Travis=character('travis',100,15,4,3,100,25,40,30,0)
+    Travis=character('travis',100,15,0,3,100,25,40,30,0)
     Zombie=character('zombie',50,10,1,1,40,0,0,0,0)
 
     print('you are walking towards the rodeo when you encounter a zombie')
@@ -271,7 +271,7 @@ while dead=='no':
     pause()
     print('you spot a mama armed with an apple pie and shes angry')
     print('https://youtu.be/cLx87ceoNT8?si=pwd7Y5VUH42dDu_I')
-    Mama=character('mama',60,8,1,7,60,25,0,0,0)
+    Mama=character('mama',60,8,3,7,60,25,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Mama.name,Mama.hp,Mama.dmg,Mama.dodging,Mama.priority,Mama.maxhealth,Mama.applepie,Mama.astrothunder,Mama.sickomode,SuperPoints)
     pause()
     print(' ')
@@ -287,7 +287,7 @@ while dead=='no':
     Travis.Upgrade('')
 
     print('you now encounter a zombie with armor')
-    Zombie=character('zombie',70,11,1,1,70,0,0,0,0)
+    Zombie=character('zombie',70,11,3,1,70,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('that was pretty easy wasnt it!')
@@ -296,7 +296,7 @@ while dead=='no':
     pause()
     print('https://youtu.be/rNr6X0_vmWM?si=6wDY1yYtUY-rCSDm')
     print('the nightcrawler, a huge black cat jumps from a tree')
-    nightcrawler=character('nightcrawler',75,20,5,15,75,0,0,0,0)
+    nightcrawler=character('nightcrawler',75,20,6,15,75,0,0,0,0)
 
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,nightcrawler.name,nightcrawler.hp,nightcrawler.dmg,nightcrawler.dodging,nightcrawler.priority,nightcrawler.maxhealth,nightcrawler.applepie,nightcrawler.astrothunder,nightcrawler.sickomode,SuperPoints)
     print('that was tough, but its only the beginning')
@@ -308,7 +308,7 @@ while dead=='no':
     print('youll be healed up soon')
     pause()
     print('a zombie ambushes you')
-    Zombie=character('zombie',40,15,1,10,50,0,0,0,0)
+    Zombie=character('zombie',40,15,3,10,50,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('nice job, now its time to go the trap')
@@ -361,7 +361,7 @@ while dead=='no':
         Travis.hp-=20
         print(f'terrible decision you lose 20 health')
     print('you encounter a young thug and hes armed with a bat')
-    YoungThug=character('YoungThug',60,30,3,1,35,0,0,0,0)
+    YoungThug=character('YoungThug',60,30,5,1,35,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,YoungThug.name,YoungThug.hp,YoungThug.dmg,YoungThug.dodging,YoungThug.priority,YoungThug.maxhealth,YoungThug.applepie,YoungThug.astrothunder,YoungThug.sickomode,SuperPoints)
     Travis.Upgrade('')
     pause()
@@ -386,7 +386,7 @@ while dead=='no':
     pause()
     print('hes an angry little dwarf and his name is kendrick lamar')
     pause()
-    kendrick=character('kendrick',150,20,4,3,75,0,0,0,0)
+    kendrick=character('kendrick',150,20,7,3,75,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,kendrick.name,kendrick.hp,kendrick.dmg,kendrick.dodging,kendrick.priority,kendrick.maxhealth,kendrick.applepie,kendrick.astrothunder,kendrick.sickomode,SuperPoints)
     Travis.Upgrade('')
     pause()
@@ -438,30 +438,6 @@ while dead=='no':
     pause()
     print('he gives you a scroll')
     readit=input('do you want to read it>>  ')
-    if readit=='yes':
-        print('''       ▐ ▄  ▄▄· ▄▄▄ .     ▄· ▄▌      ▄• ▄▌     ▄▄▄·  ▄▄· .▄▄▄  ▄• ▄▌▪  ▄▄▄  ▄▄▄ .    .▄▄ · ▄▄▄ . ▌ ▐·▄▄▄ . ▐ ▄                                 
-    ▪     •█▌▐█▐█ ▌▪▀▄.▀·    ▐█▪██▌▪     █▪██▌    ▐█ ▀█ ▐█ ▌▪▐▀•▀█ █▪██▌██ ▀▄ █·▀▄.▀·    ▐█ ▀. ▀▄.▀·▪█·█▌▀▄.▀·•█▌▐█                                
-    ▄█▀▄ ▐█▐▐▌██ ▄▄▐▀▀▪▄    ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ▄█▀▀█ ██ ▄▄█▌·.█▌█▌▐█▌▐█·▐▀▀▄ ▐▀▀▪▄    ▄▀▀▀█▄▐▀▀▪▄▐█▐█•▐▀▀▪▄▐█▐▐▌                                
-    ▐█▌.▐▌██▐█▌▐███▌▐█▄▄▌     ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█ ▪▐▌▐███▌▐█▪▄█·▐█▄█▌▐█▌▐█•█▌▐█▄▄▌    ▐█▄▪▐█▐█▄▄▌ ███ ▐█▄▄▌██▐█▌                                
-    ▀█▄▀▪▀▀ █▪·▀▀▀  ▀▀▀       ▀ •  ▀█▄▀▪ ▀▀▀      ▀  ▀ ·▀▀▀ ·▀▀█.  ▀▀▀ ▀▀▀.▀  ▀ ▀▀▀      ▀▀▀▀  ▀▀▀ . ▀   ▀▀▀ ▀▀ █▪                                
-    .▄▄ · ▄• ▄▌ ▄▄▄·▄▄▄ .▄▄▄   ▄▄▄·      ▪   ▐ ▄ ▄▄▄▄▄.▄▄ ·      ▄· ▄▌      ▄• ▄▌     ▄▄·  ▄▄▄·  ▐ ▄     ▄• ▄▌.▄▄ · ▄▄▄ .     ▄· ▄▌      ▄• ▄▌▄▄▄  
-    ▐█ ▀. █▪██▌▐█ ▄█▀▄.▀·▀▄ █·▐█ ▄█▪     ██ •█▌▐█•██  ▐█ ▀.     ▐█▪██▌▪     █▪██▌    ▐█ ▌▪▐█ ▀█ •█▌▐█    █▪██▌▐█ ▀. ▀▄.▀·    ▐█▪██▌▪     █▪██▌▀▄ █·
-    ▄▀▀▀█▄█▌▐█▌ ██▀·▐▀▀▪▄▐▀▀▄  ██▀· ▄█▀▄ ▐█·▐█▐▐▌ ▐█.▪▄▀▀▀█▄    ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██ ▄▄▄█▀▀█ ▐█▐▐▌    █▌▐█▌▄▀▀▀█▄▐▀▀▪▄    ▐█▌▐█▪ ▄█▀▄ █▌▐█▌▐▀▀▄ 
-    ▐█▄▪▐█▐█▄█▌▐█▪·•▐█▄▄▌▐█•█▌▐█▪·•▐█▌.▐▌▐█▌██▐█▌ ▐█▌·▐█▄▪▐█     ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐███▌▐█ ▪▐▌██▐█▌    ▐█▄█▌▐█▄▪▐█▐█▄▄▌     ▐█▀·.▐█▌.▐▌▐█▄█▌▐█•█▌
-    ▀▀▀▀  ▀▀▀ .▀    ▀▀▀ .▀  ▀.▀    ▀█▄▀▪▀▀▀▀▀ █▪ ▀▀▀  ▀▀▀▀       ▀ •  ▀█▄▀▪ ▀▀▀     ·▀▀▀  ▀  ▀ ▀▀ █▪     ▀▀▀  ▀▀▀▀  ▀▀▀       ▀ •  ▀█▄▀▪ ▀▀▀ .▀  ▀
-    ·▄▄▄▄  ▄▄▄ . ▄▄▄· ·▄▄▄▄  ▄▄▌  ▪  ▄▄▄ ..▄▄ · ▄▄▄▄▄     ▄▄▄· ▄▄▄▄· ▪  ▄▄▌  ▪  ▄▄▄▄▄ ▄· ▄▌                                                        
-    ██▪ ██ ▀▄.▀·▐█ ▀█ ██▪ ██ ██•  ██ ▀▄.▀·▐█ ▀. •██      ▐█ ▀█ ▐█ ▀█▪██ ██•  ██ •██  ▐█▪██▌                                                        
-    ▐█· ▐█▌▐▀▀▪▄▄█▀▀█ ▐█· ▐█▌██▪  ▐█·▐▀▀▪▄▄▀▀▀█▄ ▐█.▪    ▄█▀▀█ ▐█▀▀█▄▐█·██▪  ▐█· ▐█.▪▐█▌▐█▪                                                        
-    ██. ██ ▐█▄▄▌▐█ ▪▐▌██. ██ ▐█▌▐▌▐█▌▐█▄▄▌▐█▄▪▐█ ▐█▌·    ▐█ ▪▐▌██▄▪▐█▐█▌▐█▌▐▌▐█▌ ▐█▌· ▐█▀·.                                                        
-    ▀▀▀▀▀•  ▀▀▀  ▀  ▀ ▀▀▀▀▀• .▀▀▀ ▀▀▀ ▀▀▀  ▀▀▀▀  ▀▀▀      ▀  ▀ ·▀▀▀▀ ▀▀▀.▀▀▀ ▀▀▀ ▀▀▀   ▀ •                                                         
-    ▄▄▄· .▄▄ · ▄▄▄▄▄▄▄▄        ▄▄▄▄▄ ▄ .▄▄• ▄▌ ▐ ▄ ·▄▄▄▄  ▄▄▄ .▄▄▄                                                                                
-    ▐█ ▀█ ▐█ ▀. •██  ▀▄ █·▪     •██  ██▪▐██▪██▌•█▌▐███▪ ██ ▀▄.▀·▀▄ █·                                                                              
-    ▄█▀▀█ ▄▀▀▀█▄ ▐█.▪▐▀▀▄  ▄█▀▄  ▐█.▪██▀▐██▌▐█▌▐█▐▐▌▐█· ▐█▌▐▀▀▪▄▐▀▀▄                                                                               
-    ▐█ ▪▐▌▐█▄▪▐█ ▐█▌·▐█•█▌▐█▌.▐▌ ▐█▌·██▌▐▀▐█▄█▌██▐█▌██. ██ ▐█▄▄▌▐█•█▌                                                                              
-    ▀  ▀  ▀▀▀▀  ▀▀▀ .▀  ▀ ▀█▄▀▪ ▀▀▀ ▀▀▀ · ▀▀▀ ▀▀ █▪▀▀▀▀▀•  ▀▀▀ .▀  ▀ ▀                                                                            ''')
-    else:
-        print('ur dumb')
-
     print('you see an army of skeletons')
     skeletons=character('skeletons',300,20,2,0,200,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,skeletons.name,skeletons.hp,skeletons.dmg,skeletons.dodging,skeletons.priority,skeletons.maxhealth,skeletons.applepie,skeletons.astrothunder,skeletons.sickomode,SuperPoints)
@@ -534,3 +510,5 @@ while dead=='no':
                                  ░███                                         
                                  █████                                        
                                 ░░░░░                                         ''')
+    
+    
