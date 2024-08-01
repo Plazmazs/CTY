@@ -48,8 +48,12 @@ class character:
                     self.dmg+=random.randint(1,8)
                     print(f'its lit now deals {self.dmg} damage')
                 elif choice == 'dodging':
-                    self.dodging+=random.randint(0,2)
-                    print(f'dodging skill is now {self.dodging}')
+                    if self.dodging<15:
+                        self.dodging+=random.randint(0,2)
+                        print(f'dodging skill is now {self.dodging}')
+                    else:
+                        print('cannot upgrade dodging')
+                        Travis.Upgrade('')
                 elif choice == 'applepie':
                     self.applepie+=random.randint(5,15)
                     print(f'apple pie now heals for {self.applepie} health')
@@ -143,7 +147,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                 pause()
                 print(f'{Enemyname} is up')
                 pause()
-                if Enemyname=='zombie' or Enemyname=='nightcrawler'or Enemyname=='YoungThug' or Enemyname=='bird'  or Enemyname=='bigbird' or Enemyname=='skeletons'   :
+                if Enemyname=='zombie' or Enemyname=='nightcrawler'or Enemyname=='YoungThug' or Enemyname=='bird'  or Enemyname=='bigbird' or Enemyname=='skeletons' or Enemyname=='Hyaena' or Enemyname=='TopiaTwins' :
                     print(f'{Enemyname} uses main attack, roll to dodge')
                     diceroll=Dice('you')
                     if 20-diceroll>Travisdodging:
@@ -206,8 +210,42 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                         else:
                             print('you dodged the attack')
                     TravTurn=1
+                if Enemyname=='Kanye':
+                    print(f'{Enemyname} is rolling to decide action.')
+                    if diceroll>=15:
+                        if 20-diceroll>Travisdodging:
+                            print(f'{Enemyname} used hurricane!')
+                            Travishp-=Enemyastrothunder
+                            print(f'you took {Enemyastrothunder} damage, you are at {Travishp} health')
+                        else:
+                            print('you dodged the attack')
+                    else:
+                        if 20-diceroll>Travisdodging:
+                            print(f'{Enemyname} used burn!')
+                            Travishp-=Enemydmg
+                            print(f'you took {Enemydmg} damage, you are at {Travishp} health')
+                        else:
+                            print('you dodged the attack')
         else:
-            pass
+            if Enemyname=="Kanye":
+                print('KANYE IS DEAD')
+                pause()
+                print('...')
+                pause()
+                pause()
+                pause('something is wrong.')
+                pause()
+                pause()
+                print('yeezus.')
+                pause()
+                print('KANYE RESURRECTS FROM THE GROUND, EYES GLOWING AND HE ATTACKS')
+                TravTurn=0
+                Enemyhp=300
+                Enemydmg+=15
+                Enemyastrothunder+=30
+            else:
+                pass
+
     if Travishp>0:
         pause()
         print(' ')
@@ -460,10 +498,13 @@ while dead=='no':
     print('you get an upgrade and 5 superpoints')
     SuperPoints+=5
     Travis.Upgrade('')
+    print('https://youtu.be/6ONRf7h3Mdk?si=YEQlAJwEkYllSom4')
+    pause()
+    pause()
     print('drake appears.')
     pause()
     print('you will fight to see who makes it to utopia.')
-    Drake=character('Drake',200,20,4,2,100,0,0,0,40)
+    Drake=character('Drake',200,20,4,2,100,0,0,0,50)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Drake.name,Drake.hp,Drake.dmg,Drake.dodging,Drake.priority,Drake.maxhealth,Drake.applepie,Drake.astrothunder,Drake.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('you have defeated Drake.')
@@ -512,13 +553,73 @@ while dead=='no':
                                 ░░░░░                                         ''')
     print('congratulations you made it to utopia')
     pause()
-    print('')
-    Hyaena=character('Hyaena',100,35,7,2,100,0,0,0,0)
+    print('https://youtu.be/N20q-391r48?si=toc9iprtRVihuTkb')
+    pause()
+    print('A wild hyaena charges at you')
+    Hyaena=character('Hyaena',100,35,7,5,100,0,0,0,0)
+    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Hyaena.name,Hyaena.hp,Hyaena.dmg,Hyaena.dodging,Hyaena.priority,Hyaena.maxhealth,Hyaena.applepie,Hyaena.astrothunder,Hyaena.sickomode,SuperPoints)
     Travis.Upgrade('')
+    pause()
+    print('good job!')
+    pause()
+    print('https://youtu.be/J4nvbKBuEBU?si=sprppJl_cqt018Bd')
+    pause()
+    print('you see a jetski in the distance')
+    pause
+    print('two twins hop off it and approach you')
+    pause()
     TopiaTwins=character('TopiaTwins',200,15,5,2,200,0,0,0,0)
+    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,TopiaTwins.name,TopiaTwins.hp,TopiaTwins.dmg,TopiaTwins.dodging,TopiaTwins.priority,TopiaTwins.maxhealth,TopiaTwins.applepie,TopiaTwins.astrothunder,TopiaTwins.sickomode,SuperPoints)
+    print('you are gonna need these upgrades.')
     Travis.Upgrade('')
     Travis.Upgrade('')
     Travis.Upgrade('')
-    Kanye=character('Kanye',150,20,8,2,150,0,0,0,0)
-    Yeezus=character('Yeezus',300,35,10,2,300,0,0,0,0)
+    print('https://youtu.be/AcXp7m1g5yE?si=1IlHHK-GAJeFKgR0')
+    pause()
+    pause()
+    print('finally')
+    pause()
+    print('you made it here.')
+    pause()
+    print('so close')
+    pause()
+    print('you know your fate')
+    pause()
+    print('it would always have to end like this')
+    pause()
+    print('only one can be the champion')
+    pause()
+    print('i wonder')
+    pause()
+    print('a battle with great POWER')
+    pause()
+    print('kanye')
+    pause()
+    print('west')
+    pause()
+    print('good luck.')
+    Kanye=character('Kanye',150,20,9,2,300,0,40,0,0)
+    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Kanye.name,Kanye.hp,Kanye.dmg,Kanye.dodging,Kanye.priority,Kanye.maxhealth,Kanye.applepie,Kanye.astrothunder,Kanye.sickomode,SuperPoints)
+    print('you are the champion of Utopia.')
+    pause()
+    print('''
+ █████ █████    ███████    █████  █████  
+░░███ ░░███   ███░░░░░███ ░░███  ░░███   
+ ░░███ ███   ███     ░░███ ░███   ░███   
+  ░░█████   ░███      ░███ ░███   ░███   
+   ░░███    ░███      ░███ ░███   ░███   
+    ░███    ░░███     ███  ░███   ░███   
+    █████    ░░░███████░   ░░████████    
+   ░░░░░       ░░░░░░░      ░░░░░░░░     
+                                         
+                                         
+                                         
+ █████   ███   █████ █████ ██████   █████
+░░███   ░███  ░░███ ░░███ ░░██████ ░░███ 
+ ░███   ░███   ░███  ░███  ░███░███ ░███ 
+ ░███   ░███   ░███  ░███  ░███░░███░███ 
+ ░░███  █████  ███   ░███  ░███ ░░██████ 
+  ░░░█████░█████░    ░███  ░███  ░░█████ 
+    ░░███ ░░███      █████ █████  ░░█████
+     ░░░   ░░░      ░░░░░ ░░░░░    ░░░░░ ''')
     
