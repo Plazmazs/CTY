@@ -1,5 +1,7 @@
+
 name=input('name>> ')
 if name=='chelsea' or name=='Chelsea':
-    print(f'we get married and do that dream rn!')
+    game='start'
+    print('hi baby')
 else:
-    print(f'{name} gets brutally shot and bombed')
+    print('you died bitch')

@@ -15,10 +15,9 @@ def Dice(name): #random dicef
     diceroll = random.randint(1,20)
     import time
     print('rolling dice...')
-    time.sleep(1)
+    time.sleep(3)
     print(f'{name} rolled a {diceroll}')
     print('')
-    pause()
     return diceroll
 
 def pause(): #pause() for 2 sec
@@ -48,7 +47,7 @@ class character:
                     self.dmg+=random.randint(1,8)
                     print(f'its lit now deals {self.dmg} damage')
                 elif choice == 'dodging':
-                    if self.dodging<15:
+                    if self.dodging<1:
                         self.dodging+=random.randint(0,2)
                         print(f'dodging skill is now {self.dodging}')
                     else:
@@ -87,6 +86,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
     while Travishp>0 and Enemyhp>0:
         while TravTurn==1:
             print(' ')
+            print(f'you have {SuperPoints} SuperPoints')
             AttackType=input('what attack do you want to use?')
             if AttackType == "itslit" or AttackType =='its lit':
                 print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
@@ -147,7 +147,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Travispriority,Travismaxhealth,Travi
                 pause()
                 print(f'{Enemyname} is up')
                 pause()
-                if Enemyname=='zombie' or Enemyname=='nightcrawler'or Enemyname=='YoungThug' or Enemyname=='bird'  or Enemyname=='bigbird' or Enemyname=='skeletons' or Enemyname=='Hyaena' or Enemyname=='TopiaTwins' :
+                if Enemyname=='zombie' or Enemyname=='nightcrawler'or Enemyname=='YoungThug' or Enemyname=='birds'  or Enemyname=='bigbird' or Enemyname=='skeletons' or Enemyname=='Hyaena' or Enemyname=='TopiaTwins' :
                     print(f'{Enemyname} uses main attack, roll to dodge')
                     diceroll=Dice('you')
                     if 20-diceroll>Travisdodging:
@@ -295,7 +295,7 @@ while dead=='no':
     pause()
     print('your super attack is astrothunder')
     pause()
-    print('it does 40 damage and requires 6 power points')
+    print('it does 40 damage and requires 6 SuperPoints')
     Travis=character('travis',100,15,0,3,100,25,40,30,0)
     Zombie=character('zombie',50,10,1,1,40,0,0,0,0)
 
@@ -408,8 +408,8 @@ while dead=='no':
     print('suddenly, birds from the trap attack!')
     pause()
     print('they are very elusive')
-    bird=character('bird',100,5,15,10,60,0,0,0,0)
-    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,bird.name,bird.hp,bird.dmg,bird.dodging,bird.priority,bird.maxhealth,bird.applepie,bird.astrothunder,bird.sickomode,SuperPoints)
+    birds=character('birds',100,5,15,10,60,0,0,0,0)
+    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,birds.name,birds.hp,birds.dmg,birds.dodging,birds.priority,birds.maxhealth,birds.applepie,birds.astrothunder,birds.sickomode,SuperPoints)
     print('you finally killed all the birds')
     pause()
     Travis.Upgrade('')
@@ -622,4 +622,3 @@ while dead=='no':
   ░░░█████░█████░    ░███  ░███  ░░█████ 
     ░░███ ░░███      █████ █████  ░░█████
      ░░░   ░░░      ░░░░░ ░░░░░    ░░░░░ ''')
-    
