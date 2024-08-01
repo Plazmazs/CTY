@@ -448,11 +448,11 @@ while dead=='no':
     print('you reach out to touch it and thousands more appear and charge at you')
     print('\n')
     pause()
-    print('roll to dodge')
+    print('roll to deflect damage')
     pause()
     diceroll=Dice('you')
-    Travis.hp-=diceroll*3
-    print(f'you take {diceroll*3} damage')
+    Travis.hp-=(20-diceroll)*3
+    print(f'you take {(20-diceroll)*3} damage')
     if Travis.hp <=0:
         dead='yes'
     else:
@@ -463,7 +463,7 @@ while dead=='no':
     print('drake appears.')
     pause()
     print('you will fight to see who makes it to utopia.')
-    Drake=character('Drake',200,20,4,2,100,0,0,0,40)
+    Drake=character('Drake',200,25,4,2,100,0,0,0,40)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Drake.name,Drake.hp,Drake.dmg,Drake.dodging,Drake.priority,Drake.maxhealth,Drake.applepie,Drake.astrothunder,Drake.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('you have defeated Drake.')
