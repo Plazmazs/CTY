@@ -439,7 +439,7 @@ while dead=='no':
     print('he gives you a scroll')
     readit=input('do you want to read it>>  ')
     print('you see an army of skeletons')
-    skeletons=character('skeletons',300,20,2,0,200,0,0,0,0)
+    skeletons=character('skeletons',300,20,2,0,300,0,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,skeletons.name,skeletons.hp,skeletons.dmg,skeletons.dodging,skeletons.priority,skeletons.maxhealth,skeletons.applepie,skeletons.astrothunder,skeletons.sickomode,SuperPoints)
     print('nice job')
     Travis.Upgrade('')
@@ -463,7 +463,7 @@ while dead=='no':
     print('drake appears.')
     pause()
     print('you will fight to see who makes it to utopia.')
-    Drake=character('Drake',200,25,4,2,100,0,0,0,40)
+    Drake=character('Drake',200,20,4,2,100,0,0,0,40)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Drake.name,Drake.hp,Drake.dmg,Drake.dodging,Drake.priority,Drake.maxhealth,Drake.applepie,Drake.astrothunder,Drake.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('you have defeated Drake.')
@@ -510,5 +510,15 @@ while dead=='no':
                                  ░███                                         
                                  █████                                        
                                 ░░░░░                                         ''')
-    
+    print('congratulations you made it to utopia')
+    pause()
+    print('')
+    Hyaena=character('Hyaena',100,35,7,2,100,0,0,0,0)
+    Travis.Upgrade('')
+    TopiaTwins=character('TopiaTwins',200,15,5,2,200,0,0,0,0)
+    Travis.Upgrade('')
+    Travis.Upgrade('')
+    Travis.Upgrade('')
+    Kanye=character('Kanye',150,20,8,2,150,0,0,0,0)
+    Yeezus=character('Yeezus',300,35,10,2,300,0,0,0,0)
     
