@@ -6,7 +6,6 @@ AttackType=''
 SuperPoints=0
 itslit="unlocked"
 applepie=''
-astrothunder=''
 sickomode=''
 moveon='no'
 dead='no'
@@ -38,7 +37,7 @@ class character:
         self.sickomode=sickomode
         self.butterflyeffect=butterflyeffect
     def Upgrade(self,choice):
-        while choice!='health' and choice!='damage' and choice!='dodging' and choice!='applepie' and choice!='apple pie' and choice!='astrothunder' and choice!='sicko mode' and choice!='sickomode' or choice=='critical':
+        while choice!='health' and choice!='damage' and choice!='dodging' and choice!='applepie' and choice!='apple pie' and choice!='astrothunder' and choice!='sicko mode' and choice!='sickomode' and choice!='critical':
             choice=input('do you want to upgrade health, damage, dodging, critical, astrothunder, apple pie, or sicko mode?')
             if choice=='health' or choice=='damage'or choice=='dodging'or choice=='applepie'  or choice=='apple pie' or choice=='astrothunder'or choice=='sicko mode' or choice=='sickomode' or choice=='critical' :
                 if choice == 'health':
@@ -48,23 +47,26 @@ class character:
                     self.dmg+=random.randint(1,8)
                     print(f'its lit now deals {self.dmg} damage')
                 elif choice == 'dodging':
-                    if self.dodging<14:
+                    if self.dodging<10:
                         self.dodging+=random.randint(0,2)
                         print(f'dodging skill is now {self.dodging}')
                     else:
-                        print('cannot upgrade dodging')
+                        print('cannot upgrade dodging, maxed.')
                         Travis.Upgrade('')
                 elif choice == 'critical':
-                    self.critical+=random.randint(0,2)
-                    print(f'dodging skill is now {self.dodging}')
-                elif choice == 'applepie':
-                    self.applepie+=random.randint(2,15)
+                    if self.critical<10:
+                        self.critical+=random.randint(0,2)
+                        print(f'Crit skill is now {self.critical}')
+                    else:
+                        print('cannot upgrade critical, maxed.')
+                elif choice == 'applepie' or choice=='apple pie':
+                    self.applepie+=random.randint(4,12)
                     print(f'apple pie now heals for {self.applepie} health')
                 elif choice == 'astrothunder':
                     self.astrothunder+=random.randint(10,40)
                     print(f'astrothunder now deals {self.astrothunder} damage')
                 elif choice == 'sicko mode':
-                    self.sickomode+=random.randint(15,30)
+                    self.sickomode+=random.randint(15,40)
                     print(f'its sicko mode now deals and heals for {self.sickomode} damage')
                 print(f'you upgraded {choice}')
                 pause()
@@ -100,7 +102,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                     Enemyhp-=Travisdmg
                     print('roll for critical hit')
                     diceroll=Dice('you')
-                    if 20-diceroll>Traviscrit:
+                    if 20-diceroll<Traviscrit:
                         Enemyhp-=Travisdmg
                         print('critical hit!')
                         print(f'you did {Travisdmg*2} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')    
@@ -110,15 +112,18 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                     print(f'{Enemyname} dodged {AttackType}')    
                 TravTurn=0                    
             elif AttackType == "applepie" or AttackType=='apple pie':
-                if SuperPoints>=3:
-                    SuperPoints -= 3
-                    Travishp+=Travisapplepie
-                    if Travishp>Travismaxhealth:
-                        Travishp=Travismaxhealth
-                    TravTurn=0
-                    print(f'you healed for {Travisapplepie} you are at {Travishp}')   
+                if applepie=='unlocked':
+                    if SuperPoints>=3:
+                        SuperPoints -= 3
+                        Travishp+=Travisapplepie
+                        if Travishp>Travismaxhealth:
+                            Travishp=Travismaxhealth
+                        TravTurn=0
+                        print(f'you healed for {Travisapplepie} you are at {Travishp}')   
+                    else:
+                        print('not enough superpoints')
                 else:
-                    print('not enough superpoints')
+                    print('not unlocked')
             elif AttackType == "astrothunder":
                 if SuperPoints>=6:
                     SuperPoints -= 6
@@ -129,7 +134,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                         SuperPoints+=1
                         print('roll for critical hit')
                         diceroll=Dice('you')
-                        if 20-diceroll>Traviscrit+4:
+                        if 20-diceroll<Traviscrit+3:
                             Enemyhp-=Travisastrothunder
                             print('critical hit!')
                             print(f'you did {Travisastrothunder*2} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')    
@@ -141,31 +146,34 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                 else:
                     print('not enough superpoints')
             elif AttackType == "sickomode" or AttackType=='sicko mode':
-                if SuperPoints>=9:
-                    SuperPoints -= 9
-                    Travishp+=Travissickomode
-                    if Travishp>Travismaxhealth:
-                        Travishp=Travismaxhealth
-                    print(f'you healed for {Travissickomode} you are at {Travishp}') 
-                    pause()
-                    print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
-                    diceroll=Dice(Enemyname)
-                    if 20-diceroll>Enemydodging:
-                        Enemyhp+=Travissickomode
-                        SuperPoints+=1
-                        print('roll for critical hit')
-                        diceroll=Dice('you')
-                        if 20-diceroll>Traviscrit+5:
-                            Enemyhp-=sickomode
-                            print('critical hit!')
-                            print(f'you did {Travissickomode*2} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')    
+                if sickomode=='unlocked':
+                    if SuperPoints>=9:
+                        SuperPoints -= 9
+                        Travishp+=Travissickomode
+                        if Travishp>Travismaxhealth:
+                            Travishp=Travismaxhealth
+                        print(f'you healed for {Travissickomode} you are at {Travishp}') 
+                        pause()
+                        print(f'you use {AttackType}, {Enemyname} is rolling to dodge')
+                        diceroll=Dice(Enemyname)
+                        if 20-diceroll>Enemydodging:
+                            Enemyhp+=Travissickomode
+                            SuperPoints+=1
+                            print('roll for critical hit')
+                            diceroll=Dice('you')
+                            if 20-diceroll<Traviscrit+3:
+                                Enemyhp-=sickomode
+                                print('critical hit!')
+                                print(f'you did {Travissickomode*2} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')    
+                            else:
+                                print(f'you did {Travissickomode} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')
                         else:
-                            print(f'you did {Travissickomode} damage to {Enemyname}, the {Enemyname} has {Enemyhp} health left')
+                            print(f'{Enemyname} dodged {AttackType}')
+                        TravTurn=0
                     else:
-                        print(f'{Enemyname} dodged {AttackType}')
-                    TravTurn=0
+                        print('not enough superpoints')
                 else:
-                    print('not enough superpoints')
+                    print('not unlocked')
             else:
                 print('invalid')
         if Enemyhp>0:
@@ -181,7 +189,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                         Travishp-=Enemydmg
                         print(f'{Enemyname} roll for critical hit')
                         diceroll=Dice(f'{Enemyname}')
-                        if 20-diceroll>Enemycritical:
+                        if 20-diceroll<Enemycritical:
                             Enemyhp-=Travisdmg
                             print('critical hit!')
                             print(f'you took {Enemydmg*2} damage, you are at {Travishp} health')
@@ -201,8 +209,15 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                     else:
                         print(f'{Enemyname} used main attack')
                         if 20-diceroll>Travisdodging:
-                            Travishp-=Enemydmg
-                            print(f'you took {Enemydmg} damage, you are at {Travishp} health')
+                            print(f'{Enemyname} roll for critical hit')
+                            diceroll=Dice(f'{Enemyname}')
+                            if 20-diceroll<Enemycritical:
+                                Enemyhp-=Travisdmg
+                                print('critical hit!')
+                                print(f'you took {Enemydmg*2} damage, you are at {Travishp} health')
+                            else:
+                                Travishp-=Enemydmg
+                                print(f'you took {Enemydmg} damage, you are at {Travishp} health')
                         else:
                             print('you dodged the attack')
                     TravTurn=1
@@ -214,7 +229,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                             Travishp-=Enemydmg
                             print(f'{Enemyname} roll for critical hit')
                             diceroll=Dice(f'{Enemyname}')
-                            if 20-diceroll>Enemycritical:
+                            if 20-diceroll<Enemycritical:
                                 Enemyhp-=Travisdmg
                                 print('critical hit!')
                                 print(f'you took {Enemydmg*2} damage, you are at {Travishp} health')
@@ -247,8 +262,8 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                             Travishp-=Enemysickomode
                             print(f'{Enemyname} roll for critical hit')
                             diceroll=Dice(f'{Enemyname}')
-                            if 20-diceroll>Enemycritical+2:
-                                Enemyhp-=Travisdmg
+                            if 20-diceroll<Enemycritical+2:
+                                Travishp-=Enemysickomode
                                 print('critical hit!')
                                 print(f'you took {Enemysickomode*2} damage, you are at {Travishp} health')
                             else:
@@ -260,7 +275,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                             Travishp-=Enemydmg
                             print(f'{Enemyname} roll for critical hit')
                             diceroll=Dice(f'{Enemyname}')
-                            if 20-diceroll>Enemycritical:
+                            if 20-diceroll<Enemycritical:
                                 Enemyhp-=Travisdmg
                                 print('critical hit!')
                                 print(f'you took {Enemydmg*2} damage, you are at {Travishp} health')
@@ -280,7 +295,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                             Travishp-=Enemyastrothunder
                             print(f'{Enemyname} roll for critical hit')
                             diceroll=Dice(f'{Enemyname}')
-                            if 20-diceroll>Enemycritical+2:
+                            if 20-diceroll<Enemycritical+2:
                                 Enemyhp-=Travisdmg
                                 print('critical hit!')
                                 print(f'you took {Enemyastrothunder*2} damage, you are at {Travishp} health')
@@ -294,7 +309,14 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                         diceroll=Dice(f'you')
                         if 20-diceroll>Travisdodging:
                             Travishp-=Enemydmg
-                            print(f'you took {Enemydmg} damage, you are at {Travishp} health')
+                            print(f'{Enemyname} roll for critical hit')
+                            diceroll=Dice(f'{Enemyname}')
+                            if 20-diceroll<Enemycritical:
+                                Enemyhp-=Travisdmg
+                                print('critical hit!')
+                                print(f'you took {Enemydmg*2} damage, you are at {Travishp} health')
+                            else:
+                                print(f'you took {Enemydmg} damage, you are at {Travishp} health')
                         else:
                             print('you dodged the attack')
         else:
@@ -321,7 +343,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
     if Travishp>0:
         pause()
         print(' ')
-        print(f'you healed for {(Travismaxhealth-Travishp)/3} health')
+        print(f'you healed for {int((Travismaxhealth-Travishp)/3)} health')
         pause()
         Travishp+= int((Travismaxhealth-Travishp)/3)
         Travishp=int(Travishp)
@@ -374,12 +396,12 @@ while dead=='no':
     pause()
     print('you will also roll for a critical hit')
     pause()
-    Travis=character('travis',100,15,1,0,3,100,25,50,50,0)
+    Travis=character('travis',100,15,5,1,3,100,25,50,50,0)
     Zombie=character('zombie',50,10,1,0,1,40,0,0,0,0)
 
     print('you are walking towards the rodeo when you encounter a zombie')
     pause()
-    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
+    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.critical,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
     print('congrats, you won your first fight! you get to upgrade a skill.')
     pause()
     Travis.Upgrade('')
@@ -392,6 +414,7 @@ while dead=='no':
     pause()
     print(' ')
     print('youve unlocked apple pie!')
+    applepie='unlocked'
     pause()
     pause()
     print('apple pie requires 3 superpoints')
@@ -577,16 +600,18 @@ while dead=='no':
     print('drake appears.')
     pause()
     print('you will fight to see who makes it to utopia.')
-    Drake=character('Drake',200,20,4,3,2,100,0,0,0,50)
+    Drake=character('Drake',200,20,5,5,2,200,0,0,0,50)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Drake.name,Drake.hp,Drake.dmg,Drake.dodging,Drake.critical,Drake.priority,Drake.maxhealth,Drake.applepie,Drake.astrothunder,Drake.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('you have defeated Drake.')
     pause()
     print('you now have the ability called sicko mode.')
+    sickomode='unlocked'
     pause()
-    print('base sicko mode deals 30 damage and heals for 30 health')
+    print('base sicko mode deals 50 damage and heals for 50 health')
     pause()
-    pause('you will go to utopia')
+    print('you will go to utopia')
+    pause()
 
     
     Travis.hp=Travis.maxhealth
@@ -642,7 +667,7 @@ while dead=='no':
     print('two twins hop off it and approach you')
     pause()
     TopiaTwins=character('TopiaTwins',200,15,5,2,2,200,0,0,0,0)
-    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,TopiaTwins.name,TopiaTwins.hp,TopiaTwins.dmg,TopiaTwins.dodging,.critical,TopiaTwins.priority,TopiaTwins.maxhealth,TopiaTwins.applepie,TopiaTwins.astrothunder,TopiaTwins.sickomode,SuperPoints)
+    Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,TopiaTwins.name,TopiaTwins.hp,TopiaTwins.dmg,TopiaTwins.dodging,TopiaTwins.critical,TopiaTwins.priority,TopiaTwins.maxhealth,TopiaTwins.applepie,TopiaTwins.astrothunder,TopiaTwins.sickomode,SuperPoints)
     print('you are gonna need these upgrades.')
     Travis.Upgrade('')
     Travis.Upgrade('')
