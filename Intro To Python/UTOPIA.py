@@ -24,7 +24,7 @@ def pause(): #pause() for 2 sec
     time.sleep(3)
 
 class character:
-    def __init__(self,name,hp,dmg,dodging,critical,priority,maxhealth,applepie,astrothunder,sickomode,butterflyeffect):
+    def __init__(self,name,hp,dmg,dodging,critical,priority,maxhealth,applepie,astrothunder,sickomode):
         self.name=name
         self.hp=hp
         self.dmg=dmg
@@ -35,7 +35,6 @@ class character:
         self.applepie=applepie
         self.astrothunder=astrothunder
         self.sickomode=sickomode
-        self.butterflyeffect=butterflyeffect
     def Upgrade(self,choice):
         while choice!='health' and choice!='damage' and choice!='dodging' and choice!='applepie' and choice!='apple pie' and choice!='astrothunder' and choice!='sicko mode' and choice!='sickomode' and choice!='critical':
             choice=input('do you want to upgrade health, damage, dodging, critical, astrothunder, apple pie, or sicko mode?')
@@ -241,7 +240,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                         print('kendrick will try to sing because he is dying of thrist')
                         diceroll=Dice(Enemyname)
                         if diceroll>10:
-                            Enemyhp+=Enemymaxhealth
+                            Enemyhp=Enemymaxhealth
                             print(f'kendrick healed back to max, he is now at {Enemyhp}')
                         else:
                             print('failed')
@@ -269,7 +268,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                             else:
                                 print(f'you took {Enemysickomode} damage, you are at {Travishp} health')
                     else:
-                        print(f'{Enemyname} used main attack, roll to dodge')
+                        print(f'{Enemyname} used rich flex, roll to dodge')
                         diceroll=Dice('you')
                         if 20-diceroll>Travisdodging:
                             Travishp-=Enemydmg
@@ -378,6 +377,8 @@ while dead=='no':
     ░███ ███░███ ░███    ░███    ░███ ░███ ░███░███ ░███ ░███░░░  ░███ ░███     
     ░░█████ ░░██████     █████   █████░░██████ ░░████████░░██████ ░░██████      
     ░░░░░   ░░░░░░     ░░░░░   ░░░░░  ░░░░░░   ░░░░░░░░  ░░░░░░   ░░░░░░        ''')
+
+    
     print('you are Travis Scott. you now have to make it through the rodeo, the trap, and ASTROWORLD to make it to utopia, good luck!')
     pause()
     print('https://youtu.be/cLx87ceoNT8?si=pwd7Y5VUH42dDu_I')
@@ -396,8 +397,8 @@ while dead=='no':
     pause()
     print('you will also roll for a critical hit')
     pause()
-    Travis=character('travis',100,15,5,1,3,100,25,50,50,0)
-    Zombie=character('zombie',50,10,1,0,1,40,0,0,0,0)
+    Travis=character('travis',100,15,5,1,3,100,25,50,50)
+    Zombie=character('zombie',random.randint(40,60),random.randint(8,13),random.randint(0,2),random.randint(0,3),random.randint(-2,5),60,0,0,0)
 
     print('you are walking towards the rodeo when you encounter a zombie')
     pause()
@@ -409,7 +410,7 @@ while dead=='no':
     pause()
     print('you spot a mama armed with an apple pie and shes angry')
     print(' ')
-    Mama=character('mama',55,8,3,1,7,60,25,0,0,0)
+    Mama=character('mama',random.randint(40,60),random.randint(6,12),random.randint(1,5),random.randint(1,2),random.randint(0,4),60,random.randint(15,35),0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Mama.name,Mama.hp,Mama.dmg,Mama.dodging,Mama.critical,Mama.priority,Mama.maxhealth,Mama.applepie,Mama.astrothunder,Mama.sickomode,SuperPoints)
     pause()
     print(' ')
@@ -426,7 +427,7 @@ while dead=='no':
     Travis.Upgrade('')
 
     print('you now encounter a zombie with armor')
-    Zombie=character('zombie',70,11,3,0,1,70,0,0,0,0)
+    Zombie=character('zombie',random.randint(60,95),random.randint(8,15),random.randint(1,4),random.randint(1,4),random.randint(-3,3),95,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.critical,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('another upgrade.')
@@ -437,7 +438,7 @@ while dead=='no':
     pause()
     print('https://youtu.be/rNr6X0_vmWM?si=6wDY1yYtUY-rCSDm')
     print('the nightcrawler, a huge black cat jumps from a tree')
-    nightcrawler=character('nightcrawler',75,20,6,2,8,75,0,0,0,0)
+    nightcrawler=character('nightcrawler',random.randint(60,90),random.randint(15,25),random.randint(3,8),random.randint(1,5),random.randint(5,8),90,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,nightcrawler.name,nightcrawler.hp,nightcrawler.dmg,nightcrawler.dodging,nightcrawler.critical,nightcrawler.priority,nightcrawler.maxhealth,nightcrawler.applepie,nightcrawler.astrothunder,nightcrawler.sickomode,SuperPoints)
     print('that was tough, but its only the beginning')
     pause()
@@ -446,7 +447,7 @@ while dead=='no':
     print('youll be healed up soon')
     pause()
     print('a zombie ambushes you')
-    Zombie=character('zombie',40,15,3,0,10,50,0,0,0,0)
+    Zombie=character('zombie',random.randint(30,55),random.randint(10,18),random.randint(1,4),random.randint(0,2),random.randint(5,10),55,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Zombie.name,Zombie.hp,Zombie.dmg,Zombie.dodging,Zombie.critical,Zombie.priority,Zombie.maxhealth,Zombie.applepie,Zombie.astrothunder,Zombie.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('nice job, now its time to go the trap')
@@ -499,7 +500,7 @@ while dead=='no':
         Travis.hp-=20
         print(f'terrible decision you lose 20 health')
     print('you encounter a young thug and hes armed with a bat')
-    YoungThug=character('YoungThug',60,30,5,3,1,35,0,0,0,0)
+    YoungThug=character('YoungThug',random.randint(40,70),random.randint(20,35),random.randint(2,6),random.randint(2,7),random.randint(-1,1),70,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,YoungThug.name,YoungThug.hp,YoungThug.dmg,YoungThug.dodging,YoungThug.critical,YoungThug.priority,YoungThug.maxhealth,YoungThug.applepie,YoungThug.astrothunder,YoungThug.sickomode,SuperPoints)
     Travis.Upgrade('')
     pause()
@@ -508,7 +509,7 @@ while dead=='no':
     print('suddenly, birds from the trap attack!')
     pause()
     print('they are very elusive')
-    birds=character('birds',100,5,15,0,7,60,0,0,0,0)
+    birds=character('birds',random.randint(70,110),random.randint(4,8),random.randint(10,16),random.randint(1,2),random.randint(0,5),110,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,birds.name,birds.hp,birds.dmg,birds.dodging,birds.critical,birds.priority,birds.maxhealth,birds.applepie,birds.astrothunder,birds.sickomode,SuperPoints)
     print('you finally killed all the birds')
     pause()
@@ -524,7 +525,7 @@ while dead=='no':
     pause()
     print('hes an angry little dwarf and his name is kendrick lamar')
     pause()
-    kendrick=character('kendrick',150,20,7,2,3,75,0,0,0,0)
+    kendrick=character('kendrick',150,random.randint(10,25),random.randint(4,9),random.randint(1,5),random.randint(-1,2),150,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,kendrick.name,kendrick.hp,kendrick.dmg,kendrick.dodging,kendrick.critical,kendrick.priority,kendrick.maxhealth,kendrick.applepie,kendrick.astrothunder,kendrick.sickomode,SuperPoints)
     Travis.Upgrade('')
     pause()
@@ -536,7 +537,7 @@ while dead=='no':
     pause()
     print('a huge bird comes diving down')
     pause()
-    bigbird=character('bigbird',60,15,15,0,8,60,0,0,0,0)
+    bigbird=character('bigbird',random.randint(40,70),random.randint(8,20),random.randint(9,16),random.randint(-1,2),random.randint(0,5),70,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,bigbird.name,bigbird.hp,bigbird.dmg,bigbird.dodging,bigbird.critical,bigbird.priority,bigbird.maxhealth,bigbird.applepie,bigbird.astrothunder,bigbird.sickomode,SuperPoints)
     print('you killed it!')
     pause()
@@ -573,7 +574,7 @@ while dead=='no':
     pause()
     pause()
     print('you see an army of skeletons')
-    skeletons=character('skeletons',300,20,2,0,0,300,0,0,0,0)
+    skeletons=character('skeletons',random.randint(200,400),random.randint(12,25),random.randint(1,3),1,0,400,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,skeletons.name,skeletons.hp,skeletons.dmg,skeletons.dodging,skeletons.critical,skeletons.priority,skeletons.maxhealth,skeletons.applepie,skeletons.astrothunder,skeletons.sickomode,SuperPoints)
     print('nice job')
     Travis.Upgrade('')
@@ -600,7 +601,7 @@ while dead=='no':
     print('drake appears.')
     pause()
     print('you will fight to see who makes it to utopia.')
-    Drake=character('Drake',200,20,5,5,2,200,0,0,0,50)
+    Drake=character('Drake',200,random.randint(12,26),random.randint(3,7),random.randint(2,6),random.randint(-1,3),200,0,0,random.randint(35,60))
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Drake.name,Drake.hp,Drake.dmg,Drake.dodging,Drake.critical,Drake.priority,Drake.maxhealth,Drake.applepie,Drake.astrothunder,Drake.sickomode,SuperPoints)
     Travis.Upgrade('')
     print('you have defeated Drake.')
@@ -654,7 +655,7 @@ while dead=='no':
     print('https://youtu.be/N20q-391r48?si=toc9iprtRVihuTkb')
     pause()
     print('A wild hyaena charges at you')
-    Hyaena=character('Hyaena',100,35,7,4,5,100,0,0,0,0)
+    Hyaena=character('Hyaena',random.randint(70,110),random.randint(25,45),random.randint(4,8),random.randint(1,5),random.randint(0,4),110,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Hyaena.name,Hyaena.hp,Hyaena.dmg,Hyaena.dodging,Hyaena.critical,Hyaena.priority,Hyaena.maxhealth,Hyaena.applepie,Hyaena.astrothunder,Hyaena.sickomode,SuperPoints)
     Travis.Upgrade('')
     pause()
@@ -666,7 +667,7 @@ while dead=='no':
     pause
     print('two twins hop off it and approach you')
     pause()
-    TopiaTwins=character('TopiaTwins',200,15,5,4,2,200,0,0,0,0)
+    TopiaTwins=character('TopiaTwins',random.randint(150,300),random.randint(10,24),random.randint(2,8),random.randint(2,8),random.randint(0,3),300,0,0,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,TopiaTwins.name,TopiaTwins.hp,TopiaTwins.dmg,TopiaTwins.dodging,TopiaTwins.critical,TopiaTwins.priority,TopiaTwins.maxhealth,TopiaTwins.applepie,TopiaTwins.astrothunder,TopiaTwins.sickomode,SuperPoints)
     print('you are gonna need these upgrades.')
     Travis.Upgrade('')
@@ -696,7 +697,7 @@ while dead=='no':
     print('west')
     pause()
     print('good luck.')
-    Kanye=character('Kanye',150,20,9,4,2,300,0,40,0,0)
+    Kanye=character('Kanye',150,20,9,4,2,300,0,40,0)
     Travis.hp,SuperPoints=Combat(Travis.hp,Travis.dmg,Travis.dodging,Travis.critical,Travis.priority,Travis.maxhealth,Travis.applepie,Travis.astrothunder,Travis.sickomode,Kanye.name,Kanye.hp,Kanye.dmg,Kanye.dodging,Kanye.priority,Kanye.maxhealth,Kanye.applepie,Kanye.astrothunder,Kanye.sickomode,SuperPoints)
     print('you are the champion of Utopia.')
     pause()
