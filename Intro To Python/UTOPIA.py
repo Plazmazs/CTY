@@ -189,7 +189,7 @@ def Combat(Travishp,Travisdmg,Travisdodging,Traviscrit,Travispriority,Travismaxh
                         print(f'{Enemyname} roll for critical hit')
                         diceroll=Dice(f'{Enemyname}')
                         if 20-diceroll<Enemycritical:
-                            Enemyhp-=Travisdmg
+                            Travishp-=Enemydmg
                             print('critical hit!')
                             print(f'you took {Enemydmg*2} damage, you are at {Travishp} health')
                         else:
